@@ -13,7 +13,7 @@ subprojects {
     }
 
     ext {
-        mapstructVersion = "1.5.5.Final"
+        mapstructVersion = "1.6.3"
         libVers = [
                 org_postgresql          : getEnv('VERSION_ORG_POSTGRESQL', VERSION_ORG_POSTGRESQL),
                 liquibase               : getEnv('VERSION_ORG_LIQUIBASE', VERSION_ORG_LIQUIBASE),
@@ -22,7 +22,7 @@ subprojects {
                 mapstruct               : getEnv('VERSION_MAPSTRUCT', VERSION_MAPSTRUCT),
                 netty                   : getEnv('VERSION_NETTY', VERSION_NETTY),
                 slf4j                   : getEnv('VERSION_ORG_SLF4J', VERSION_ORG_SLF4J),
-                embedded_postgres       : '2.0.2',
+                embedded_postgres       : '2.0.7',
                 equalsverifier          : '3.12.3',
                 guava                   : '32.1.1-jre',
                 jsr305                  : '3.0.2',
