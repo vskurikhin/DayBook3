@@ -1,0 +1,218 @@
+!**/src/main/**/bin/
+!**/src/main/**/build/
+!**/src/main/**/out/
+!**/src/test/**/bin/
+!**/src/test/**/build/
+!**/src/test/**/out/
+
+*.class
+*.ctxt
+*.ear
+
+# IntelliJ
+.idea
+*.iml
+*.ipr
+*.iws
+
+#TODO *.jar
+*.local
+*.log
+*.nar
+*.orig
+*.rar
+*.rej
+
+# Vim
+*.swo
+*.swp
+
+*.tar.gz
+*.war
+*.zip
+
+# OSX
+.DS_Store
+.DS_Store?
+
+.apt_generated
+.certs/
+.classpath
+.env
+.gradle
+.gradle/
+.mtj.tmp/
+.project
+.quinoa/
+.settings
+.settings/
+.springBeans
+.sts4-cache
+
+# Visual Studio Code
+.factorypath
+.vscode
+.vscode/
+
+# NetBeans
+/.nb-gradle/
+/nbbuild/
+/nbdist/
+/nbproject/private/
+nb-configuration.xml
+
+/.quarkus/cli/plugins/
+/dist/
+
+# dependencies
+/.pnp
+.pnp.js
+/node_modules
+
+api/.gradle/
+api/bin/
+api/build/
+api/src/main/resources/*.csr
+api/src/main/resources/*.keystore
+api/src/main/resources/*.pem
+api/src/main/resources/META-INF/img/
+api/src/main/resources/META-INF/resources/
+api/src/test/resources/db/*.zip
+api/src/test/resources/db/changelog/db/*sql
+api/src/test/resources/db/word/
+api/src/tmp-templates/
+
+bin/
+build/
+dist-ssr
+dist/
+docker/
+hs_err_pid*
+lerna-debug.log*HELP.md
+logs/
+node_modules/
+npm-debug.log*
+out/
+pnpm-debug.log*
+replay_pid*
+test.keystore
+test.truststore
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+
+# GoLang template
+#
+# If you prefer the allow list template instead of the deny list, see community template:
+# https://github.com/github/gitignore/blob/main/community/Golang/Go.AllowList.gitignore
+#
+# Binaries for programs and plugins
+*.exe
+*.exe~
+*.dll
+*.dylib
+go-cp
+go-envdir
+go-telnet
+# C extensions
+*.so
+
+# Test binary, build with `go test -c`
+*.test
+
+# Output of the go coverage tool, specifically when used with LiteIDE
+*.out
+
+### User defined
+.idea/
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+*.bak
+
+# Dependency directories (remove the comment below to include it)
+# vendor/
+
+# Go workspace file
+go.work
+auth/cmd/server/auth-server
+auth/PR*.diff
+auth/vendor/
+auth/coverage.*
+
+# testing
+/coverage
+
+# production
+/build
+
+# misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution / packaging
+.Python
+env/
+develop-eggs/
+downloads/
+eggs/
+.eggs/
+# TODO lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# PyInstaller
+#  Usually these files are written by a python script from a template
+#  before PyInstaller builds the exe, so as to inject date/other infos into it.
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*,cover
+.hypothesis/
+venv/
+.venv/
+.python-version
+.pytest_cache
+
+# Translations
+*.mo
+*.pot
+
+# Sphinx documentation
+docs/_build/
+
+# PyBuilder
+target/
+
+# Ipython Notebook
+.ipynb_checkpoints
+
+.history
+.psql_history

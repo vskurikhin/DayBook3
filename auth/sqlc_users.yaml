@@ -1,0 +1,42 @@
+version: "2"
+sql:
+  - &default
+    name: "user_name"
+    engine: "postgresql"
+    queries: "internal/server/sqlc/queries_user_name.sql"
+    schema: "cmd/server/cmd/migrations/20260318145800_user_name_create_table.sql"
+    database:
+      uri: "postgres://dbuser:password@localhost:5432/db?application_name=auth&search_path=auth"
+    gen:
+      go: &go_defaults
+        package: "user_name"
+        out: "internal/server/repository/user_name"
+        sql_package: "pgx/v5"
+        emit_json_tags: true
+  - <<: *default
+    name: "user_attrs"
+    queries: "internal/server/sqlc/queries_user_attrs.sql"
+    schema: "cmd/server/cmd/migrations/20260318172229_user_attrs_create_table.sql"
+    gen:
+      go:
+        <<: *go_defaults
+        package: "user_attrs"
+        out: "internal/server/repository/user_attrs"
+  - <<: *default
+    name: "user_view"
+    queries: "internal/server/sqlc/queries_user_view.sql"
+    schema: "internal/server/sqlc/schema_user_view.sql"
+    gen:
+      go:
+        <<: *go_defaults
+        package: "user_view"
+        out: "internal/server/repository/user_view"
+  - <<: *default
+    name: "user_has_roles"
+    queries: "internal/server/sqlc/queries_user_has_roles.sql"
+    schema: "cmd/server/cmd/migrations/20260318181800_user_has_roles_create_table.sql"
+    gen:
+      go:
+        <<: *go_defaults
+        package: "user_has_roles"
+        out: "internal/server/repository/user_has_roles"

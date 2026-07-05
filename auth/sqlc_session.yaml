@@ -1,0 +1,12 @@
+version: "2"
+sql:
+  - engine: "postgresql"
+    queries: "internal/server/sqlc/queries_session.sql"
+    schema: "cmd/server/cmd/migrations/20260318202020_session_create_table.sql"
+    database:
+      uri: "postgres://dbuser:password@localhost:5432/db?application_name=auth&search_path=auth"
+    gen:
+      go:
+        package: "session"
+        out: "internal/server/repository/session"
+        sql_package: "pgx/v5"

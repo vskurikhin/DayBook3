@@ -1,0 +1,57 @@
+plugins {
+    id 'idea'
+    id 'java'
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
+}
+
+compileJava {
+    options.encoding = 'UTF-8'
+    options.compilerArgs << '-parameters'
+}
+
+compileTestJava {
+    options.encoding = 'UTF-8'
+}
+
+static def getEnv(key, defaultValue) {
+    return System.getenv(key) ?: defaultValue
+}
+
+allprojects {
+    group = 'su.svn'
+    version = '0.0.1'
+
+    repositories {
+        mavenCentral()
+    }
+}
+
+dependencies {
+    implementation project(':lib')
+}
+
+subprojects {
+    apply plugin: 'idea'
+    apply plugin: 'java'
+
+    repositories {
+        mavenCentral()
+        mavenLocal()
+    }
+
+    idea {
+        module {
+            downloadJavadoc = true // defaults to false
+            downloadSources = true
+        }
+    }
+    java {
+        toolchain {
+            languageVersion = JavaLanguageVersion.of(21)
+        }
+    }
+}

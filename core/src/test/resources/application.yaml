@@ -1,0 +1,7 @@
+spring:
+  liquibase:
+    change-log: classpath:/db/changelog/Change-Log.xml
+
+token:
+  signing:
+    key: Y2Q4ZjVmOWYtZTNlOC01NjlmLTg3ZWYtZjAzYzZjZmMyOWJj

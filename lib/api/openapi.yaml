@@ -1,0 +1,1925 @@
+openapi: 3.1.0
+info:
+  description: API Documentation
+  title: DayBook 3 API
+  version: "1.0"
+servers:
+- url: /
+paths:
+  /api/v2/record/blob:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NewBlobRecord"
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResourceBlobRecord"
+          description: Created
+        "500":
+          $ref: "#/components/responses/500Error"
+        "401":
+          description: Not Authorized
+        "403":
+          description: Not Allowed
+        "400":
+          description: Bad Request
+      security:
+      - SecurityScheme:
+        - USER
+      summary: Create BLOB record
+      tags:
+      - Blob Record Resource
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateBlobRecord"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResourceBlobRecord"
+          description: OK
+        "500":
+          $ref: "#/components/responses/500Error"
+        "401":
+          description: Not Authorized
+        "403":
+          description: Not Allowed
+        "400":
+          description: Bad Request
+      security:
+      - SecurityScheme:
+        - USER
+      summary: Update BLOB record
+      tags:
+      - Blob Record Resource
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /api/v2/record/blob/{id}:
+    delete:
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          $ref: "#/components/schemas/UUID"
+        style: simple
+      responses:
+        "204":
+          $ref: "#/components/responses/204NoCont"
+        "500":
+          $ref: "#/components/responses/500Error"
+        "401":
+          description: Not Authorized
+        "403":
+          description: Not Allowed
+      security:
+      - SecurityScheme:
+        - USER
+      summary: Delete BLOB record
+      tags:
+      - Blob Record Resource
+      x-accepts:
+      - application/json
+  /api/v2/record/json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NewJsonRecord"
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResourceJsonRecord"
+          description: Created
+        "500":
+          $ref: "#/components/responses/500Error"
+        "401":
+          description: Not Authorized
+        "403":
+          description: Not Allowed
+        "400":
+          description: Bad Request
+      security:
+      - SecurityScheme:
+        - USER
+      summary: Create JSON record
+      tags:
+      - Json Record Resource
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateJsonRecord"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResourceJsonRecord"
+          description: OK
+        "500":
+          $ref: "#/components/responses/500Error"
+        "401":
+          description: Not Authorized
+        "403":
+          description: Not Allowed
+        "400":
+          description: Bad Request
+      security:
+      - SecurityScheme:
+        - USER
+      summary: Update JSON record
+      tags:
+      - Json Record Resource
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /api/v2/record/json/{id}:
+    delete:
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          $ref: "#/components/schemas/UUID"
+        style: simple
+      responses:
+        "204":
+          $ref: "#/components/responses/204NoCont"
+        "500":
+          $ref: "#/components/responses/500Error"
+        "401":
+          description: Not Authorized
+        "403":
+          description: Not Allowed
+      security:
+      - SecurityScheme:
+        - USER
+      summary: Delete JSON record
+      tags:
+      - Json Record Resource
+      x-accepts:
+      - application/json
+  /api/v2/record/markdown:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NewMarkdownRecord"
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResourceMarkdownRecord"
+          description: Created
+        "500":
+          $ref: "#/components/responses/500Error"
+        "401":
+          description: Not Authorized
+        "403":
+          description: Not Allowed
+        "400":
+          description: Bad Request
+      security:
+      - SecurityScheme:
+        - USER
+      summary: Create markdown record
+      tags:
+      - Markdown Record Resource
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateMarkdownRecord"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResourceMarkdownRecord"
+          description: OK
+        "500":
+          $ref: "#/components/responses/500Error"
+        "401":
+          description: Not Authorized
+        "403":
+          description: Not Allowed
+        "400":
+          description: Bad Request
+      security:
+      - SecurityScheme:
+        - USER
+      summary: Update markdown record
+      tags:
+      - Markdown Record Resource
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /api/v2/record/markdown/{id}:
+    delete:
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          $ref: "#/components/schemas/UUID"
+        style: simple
+      responses:
+        "204":
+          $ref: "#/components/responses/204NoCont"
+        "500":
+          $ref: "#/components/responses/500Error"
+        "401":
+          description: Not Authorized
+        "403":
+          description: Not Allowed
+      security:
+      - SecurityScheme:
+        - USER
+      summary: Delete markdown record
+      tags:
+      - Markdown Record Resource
+      x-accepts:
+      - application/json
+  /api/v2/record/set:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NewSetRecord"
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResourceSetRecord"
+          description: Created
+        "500":
+          $ref: "#/components/responses/500Error"
+        "401":
+          description: Not Authorized
+        "403":
+          description: Not Allowed
+        "400":
+          description: Bad Request
+      security:
+      - SecurityScheme:
+        - USER
+      summary: Create BLOB record
+      tags:
+      - Set Record Resource
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateSetRecord"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResourceSetRecord"
+          description: OK
+        "500":
+          $ref: "#/components/responses/500Error"
+        "401":
+          description: Not Authorized
+        "403":
+          description: Not Allowed
+        "400":
+          description: Bad Request
+      security:
+      - SecurityScheme:
+        - USER
+      summary: Update BLOB record
+      tags:
+      - Set Record Resource
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /api/v2/record/set/{id}:
+    delete:
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          $ref: "#/components/schemas/UUID"
+        style: simple
+      responses:
+        "204":
+          description: No Content
+        "500":
+          $ref: "#/components/responses/500Error"
+        "401":
+          description: Not Authorized
+        "403":
+          description: Not Allowed
+      security:
+      - SecurityScheme:
+        - USER
+      summary: Delete BLOB record
+      tags:
+      - Set Record Resource
+      x-accepts:
+      - application/json
+  /api/v2/record/value:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NewValueRecord"
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResourceValueRecord"
+          description: Created
+        "500":
+          $ref: "#/components/responses/500Error"
+        "401":
+          description: Not Authorized
+        "403":
+          description: Not Allowed
+        "400":
+          description: Bad Request
+      security:
+      - SecurityScheme:
+        - USER
+      summary: Create BLOB record
+      tags:
+      - Value Record Resource
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateValueRecord"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResourceValueRecord"
+          description: OK
+        "500":
+          $ref: "#/components/responses/500Error"
+        "401":
+          description: Not Authorized
+        "403":
+          description: Not Allowed
+        "400":
+          description: Bad Request
+      security:
+      - SecurityScheme:
+        - USER
+      summary: Update BLOB record
+      tags:
+      - Value Record Resource
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /api/v2/record/value/{id}:
+    delete:
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          $ref: "#/components/schemas/UUID"
+        style: simple
+      responses:
+        "204":
+          description: No Content
+        "500":
+          $ref: "#/components/responses/500Error"
+        "401":
+          description: Not Authorized
+        "403":
+          description: Not Allowed
+      security:
+      - SecurityScheme:
+        - USER
+      summary: Delete BLOB record
+      tags:
+      - Value Record Resource
+      x-accepts:
+      - application/json
+  /api/v2/record/vector:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NewVectorRecord"
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResourceVectorRecord"
+          description: Created
+        "500":
+          $ref: "#/components/responses/500Error"
+        "401":
+          description: Not Authorized
+        "403":
+          description: Not Allowed
+        "400":
+          description: Bad Request
+      security:
+      - SecurityScheme:
+        - USER
+      summary: Create BLOB record
+      tags:
+      - Vector Record Resource
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateVectorRecord"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResourceVectorRecord"
+          description: OK
+        "500":
+          $ref: "#/components/responses/500Error"
+        "401":
+          description: Not Authorized
+        "403":
+          description: Not Allowed
+        "400":
+          description: Bad Request
+      security:
+      - SecurityScheme:
+        - USER
+      summary: Update BLOB record
+      tags:
+      - Vector Record Resource
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /api/v2/record/vector/{id}:
+    delete:
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          $ref: "#/components/schemas/UUID"
+        style: simple
+      responses:
+        "204":
+          description: No Content
+        "500":
+          $ref: "#/components/responses/500Error"
+        "401":
+          description: Not Authorized
+        "403":
+          description: Not Allowed
+      security:
+      - SecurityScheme:
+        - USER
+      summary: Delete BLOB record
+      tags:
+      - Vector Record Resource
+      x-accepts:
+      - application/json
+  /api/v2/record/xml:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NewXmlRecord"
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResourceXmlRecord"
+          description: Created
+        "500":
+          $ref: "#/components/responses/500Error"
+        "401":
+          description: Not Authorized
+        "403":
+          description: Not Allowed
+        "400":
+          description: Bad Request
+      security:
+      - SecurityScheme:
+        - USER
+      summary: Create BLOB record
+      tags:
+      - Xml Record Resource
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateXmlRecord"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResourceXmlRecord"
+          description: OK
+        "500":
+          $ref: "#/components/responses/500Error"
+        "401":
+          description: Not Authorized
+        "403":
+          description: Not Allowed
+        "400":
+          description: Bad Request
+      security:
+      - SecurityScheme:
+        - USER
+      summary: Update BLOB record
+      tags:
+      - Xml Record Resource
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /api/v2/record/xml/{id}:
+    delete:
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          $ref: "#/components/schemas/UUID"
+        style: simple
+      responses:
+        "204":
+          description: No Content
+        "500":
+          $ref: "#/components/responses/500Error"
+        "401":
+          description: Not Authorized
+        "403":
+          description: Not Allowed
+      security:
+      - SecurityScheme:
+        - USER
+      summary: Delete BLOB record
+      tags:
+      - Xml Record Resource
+      x-accepts:
+      - application/json
+  /api/v2/records:
+    get:
+      parameters:
+      - explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: size
+        required: false
+        schema:
+          format: int8
+          type: integer
+        style: form
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RecordDataPage"
+          description: Created
+        "500":
+          $ref: "#/components/responses/500Error"
+      summary: Get page with list of records
+      tags:
+      - Record Resource
+      x-accepts:
+      - application/json
+  /api/v2/records/{id}:
+    get:
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          $ref: "#/components/schemas/UUID"
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RecordData"
+          description: OK
+        "500":
+          $ref: "#/components/responses/500Error"
+      summary: Retrieves a single record by its unique identifier
+      tags:
+      - Record Resource
+      x-accepts:
+      - application/json
+  /health:
+    get:
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                type: string
+          description: OK
+      summary: Hello
+      tags:
+      - Health Check Resource
+      x-accepts:
+      - text/plain
+components:
+  responses:
+    "200OK":
+      description: OK
+    "201Created":
+      description: Created
+    "204NoCont":
+      description: No Content
+    "500Error":
+      description: Internal Server Error
+  schemas:
+    NewBlobRecord:
+      example:
+        visible: true
+        blob: blob
+        postAt: 2000-01-23T04:56:07.000+00:00
+        aHref: aHref
+        flags: 0
+        title: title
+        parentId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        tags:
+        - tags
+        - tags
+      properties:
+        visible:
+          type: boolean
+        flags:
+          format: int32
+          type: integer
+        parentId:
+          format: uuid
+          pattern: "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}"
+          type: string
+        title:
+          maxLength: 4096
+          type: string
+        aHref:
+          maxLength: 4096
+          type: string
+        blob:
+          type: string
+        postAt:
+          format: date-time
+          type: string
+        tags:
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+      required:
+      - blob
+      - postAt
+    NewJsonRecord:
+      example:
+        visible: true
+        postAt: 2000-01-23T04:56:07.000+00:00
+        aHref: aHref
+        flags: 0
+        json:
+          key: json
+        title: title
+        parentId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        tags:
+        - tags
+        - tags
+      properties:
+        visible:
+          type: boolean
+        flags:
+          format: int32
+          type: integer
+        parentId:
+          format: uuid
+          pattern: "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}"
+          type: string
+        title:
+          maxLength: 4096
+          type: string
+        aHref:
+          maxLength: 4096
+          type: string
+        json:
+          additionalProperties:
+            type: string
+        postAt:
+          format: date-time
+          type: string
+        tags:
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+      required:
+      - json
+      - postAt
+    NewMarkdownRecord:
+      example:
+        visible: true
+        postAt: 2000-01-23T04:56:07.000+00:00
+        aHref: aHref
+        flags: 0
+        markdown: markdown
+        title: title
+        parentId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        tags:
+        - tags
+        - tags
+      properties:
+        visible:
+          type: boolean
+        flags:
+          format: int32
+          type: integer
+        parentId:
+          format: uuid
+          pattern: "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}"
+          type: string
+        title:
+          maxLength: 4096
+          type: string
+        aHref:
+          maxLength: 4096
+          type: string
+        markdown:
+          maxLength: 65535
+          type: string
+        postAt:
+          format: date-time
+          type: string
+        tags:
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+      required:
+      - markdown
+      - postAt
+    NewSetRecord:
+      example:
+        visible: true
+        postAt: 2000-01-23T04:56:07.000+00:00
+        texts:
+        - texts
+        - texts
+        aHref: aHref
+        flags: 0
+        title: title
+        parentId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        tags:
+        - tags
+        - tags
+      properties:
+        visible:
+          type: boolean
+        flags:
+          format: int32
+          type: integer
+        parentId:
+          format: uuid
+          pattern: "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}"
+          type: string
+        title:
+          maxLength: 4096
+          type: string
+        aHref:
+          maxLength: 4096
+          type: string
+        texts:
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+        postAt:
+          format: date-time
+          type: string
+        tags:
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+      required:
+      - postAt
+      - texts
+    NewValueRecord:
+      example:
+        visible: true
+        postAt: 2000-01-23T04:56:07.000+00:00
+        aHref: aHref
+        flags: 0
+        title: title
+        value: value
+        parentId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        tags:
+        - tags
+        - tags
+      properties:
+        visible:
+          type: boolean
+        flags:
+          format: int32
+          type: integer
+        parentId:
+          format: uuid
+          pattern: "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}"
+          type: string
+        title:
+          maxLength: 4096
+          type: string
+        aHref:
+          maxLength: 4096
+          type: string
+        value:
+          maxLength: 4096
+          type: string
+        postAt:
+          format: date-time
+          type: string
+        tags:
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+      required:
+      - postAt
+      - value
+    NewVectorRecord:
+      example:
+        visible: true
+        postAt: 2000-01-23T04:56:07.000+00:00
+        aHref: aHref
+        flags: 0
+        vector:
+        - 6.0274563
+        - 6.0274563
+        - 6.0274563
+        - 6.0274563
+        - 6.0274563
+        title: title
+        parentId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        tags:
+        - tags
+        - tags
+      properties:
+        visible:
+          type: boolean
+        flags:
+          format: int32
+          type: integer
+        parentId:
+          format: uuid
+          pattern: "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}"
+          type: string
+        title:
+          maxLength: 4096
+          type: string
+        aHref:
+          maxLength: 4096
+          type: string
+        vector:
+          items:
+            format: float
+            type: number
+          maxItems: 1024
+          minItems: 1024
+          type: array
+        postAt:
+          format: date-time
+          type: string
+        tags:
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+      required:
+      - postAt
+      - vector
+    NewXmlRecord:
+      example:
+        visible: true
+        postAt: 2000-01-23T04:56:07.000+00:00
+        aHref: aHref
+        xml: xml
+        flags: 0
+        title: title
+        parentId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        tags:
+        - tags
+        - tags
+      properties:
+        visible:
+          type: boolean
+        flags:
+          format: int32
+          type: integer
+        parentId:
+          format: uuid
+          pattern: "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}"
+          type: string
+        title:
+          maxLength: 4096
+          type: string
+        aHref:
+          maxLength: 4096
+          type: string
+        xml:
+          maxLength: 10485760
+          type: string
+        postAt:
+          format: date-time
+          type: string
+        tags:
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+      required:
+      - postAt
+      - xml
+    OffsetDateTime:
+      format: date-time
+      type: string
+    RecordData:
+      example:
+        fileName: fileName
+        postAt: 2000-01-23T04:56:07.000+00:00
+        visible: true
+        flags: 0
+        link: link
+        type: Base
+        title: title
+        parentId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        tags:
+        - tags
+        - tags
+        blob: blob
+        texts:
+        - texts
+        - texts
+        aHref: aHref
+        xml: xml
+        refreshAt: 2000-01-23T04:56:07.000+00:00
+        markdown: markdown
+        json:
+          key: json
+        html: html
+        vector:
+        - 6.0274563
+        - 6.0274563
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        value: value
+      properties:
+        id:
+          format: uuid
+          pattern: "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}"
+          type: string
+        parentId:
+          format: uuid
+          pattern: "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}"
+          type: string
+        type:
+          $ref: "#/components/schemas/RecordType"
+        postAt:
+          format: date-time
+          type: string
+        refreshAt:
+          format: date-time
+          type: string
+        visible:
+          type: boolean
+        flags:
+          format: int32
+          type: integer
+        title:
+          type: string
+        aHref:
+          type: string
+        blob:
+          type: string
+        json:
+          additionalProperties:
+            type: string
+        texts:
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+        fileName:
+          type: string
+        html:
+          type: string
+        link:
+          type: string
+        markdown:
+          type: string
+        value:
+          type: string
+        vector:
+          items:
+            format: float
+            type: number
+          type: array
+        xml:
+          type: string
+        tags:
+          items:
+            type: string
+          type: array
+    RecordDataPage:
+      example:
+        pageCount: 1
+        totalRecords: 2
+        pageIndex: 5
+        pageSize: 5
+        list:
+        - fileName: fileName
+          postAt: 2000-01-23T04:56:07.000+00:00
+          visible: true
+          flags: 0
+          link: link
+          type: Base
+          title: title
+          parentId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          tags:
+          - tags
+          - tags
+          blob: blob
+          texts:
+          - texts
+          - texts
+          aHref: aHref
+          xml: xml
+          refreshAt: 2000-01-23T04:56:07.000+00:00
+          markdown: markdown
+          json:
+            key: json
+          html: html
+          vector:
+          - 6.0274563
+          - 6.0274563
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          value: value
+        - fileName: fileName
+          postAt: 2000-01-23T04:56:07.000+00:00
+          visible: true
+          flags: 0
+          link: link
+          type: Base
+          title: title
+          parentId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          tags:
+          - tags
+          - tags
+          blob: blob
+          texts:
+          - texts
+          - texts
+          aHref: aHref
+          xml: xml
+          refreshAt: 2000-01-23T04:56:07.000+00:00
+          markdown: markdown
+          json:
+            key: json
+          html: html
+          vector:
+          - 6.0274563
+          - 6.0274563
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          value: value
+      properties:
+        list:
+          items:
+            $ref: "#/components/schemas/RecordData"
+          type: array
+        pageCount:
+          format: int64
+          type: integer
+        pageIndex:
+          format: int64
+          type: integer
+        pageSize:
+          format: int64
+          type: integer
+        totalRecords:
+          format: int64
+          type: integer
+    RecordType:
+      enum:
+      - Base
+      - Blob
+      - Json
+      - Set
+      - Text
+      - Vector
+      - Xml
+      type: string
+    ResourceBlobRecord:
+      example:
+        visible: true
+        blob: blob
+        postAt: 2000-01-23T04:56:07.000+00:00
+        aHref: aHref
+        refreshAt: 2000-01-23T04:56:07.000+00:00
+        flags: 0
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        title: title
+        parentId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        tags:
+        - tags
+        - tags
+      properties:
+        id:
+          format: uuid
+          pattern: "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}"
+          type: string
+        visible:
+          type: boolean
+        flags:
+          format: int32
+          type: integer
+        parentId:
+          format: uuid
+          pattern: "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}"
+          type: string
+        title:
+          type: string
+        aHref:
+          type: string
+        blob:
+          type: string
+        postAt:
+          format: date-time
+          type: string
+        refreshAt:
+          format: date-time
+          type: string
+        tags:
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+    ResourceJsonRecord:
+      example:
+        visible: true
+        postAt: 2000-01-23T04:56:07.000+00:00
+        aHref: aHref
+        refreshAt: 2000-01-23T04:56:07.000+00:00
+        flags: 0
+        json:
+          key: json
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        title: title
+        parentId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        tags:
+        - tags
+        - tags
+      properties:
+        id:
+          format: uuid
+          pattern: "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}"
+          type: string
+        visible:
+          type: boolean
+        flags:
+          format: int32
+          type: integer
+        parentId:
+          format: uuid
+          pattern: "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}"
+          type: string
+        title:
+          type: string
+        aHref:
+          type: string
+        json:
+          additionalProperties:
+            type: string
+        postAt:
+          format: date-time
+          type: string
+        refreshAt:
+          format: date-time
+          type: string
+        tags:
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+    ResourceMarkdownRecord:
+      example:
+        visible: true
+        postAt: 2000-01-23T04:56:07.000+00:00
+        aHref: aHref
+        refreshAt: 2000-01-23T04:56:07.000+00:00
+        flags: 0
+        markdown: markdown
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        title: title
+        parentId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        tags:
+        - tags
+        - tags
+      properties:
+        id:
+          format: uuid
+          pattern: "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}"
+          type: string
+        visible:
+          type: boolean
+        flags:
+          format: int32
+          type: integer
+        parentId:
+          format: uuid
+          pattern: "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}"
+          type: string
+        title:
+          type: string
+        aHref:
+          type: string
+        markdown:
+          type: string
+        postAt:
+          format: date-time
+          type: string
+        refreshAt:
+          format: date-time
+          type: string
+        tags:
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+    ResourceSetRecord:
+      example:
+        visible: true
+        postAt: 2000-01-23T04:56:07.000+00:00
+        texts:
+        - texts
+        - texts
+        aHref: aHref
+        refreshAt: 2000-01-23T04:56:07.000+00:00
+        flags: 0
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        title: title
+        parentId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        tags:
+        - tags
+        - tags
+      properties:
+        id:
+          format: uuid
+          pattern: "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}"
+          type: string
+        visible:
+          type: boolean
+        flags:
+          format: int32
+          type: integer
+        parentId:
+          format: uuid
+          pattern: "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}"
+          type: string
+        title:
+          type: string
+        aHref:
+          type: string
+        texts:
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+        postAt:
+          format: date-time
+          type: string
+        refreshAt:
+          format: date-time
+          type: string
+        tags:
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+    ResourceValueRecord:
+      example:
+        visible: true
+        postAt: 2000-01-23T04:56:07.000+00:00
+        aHref: aHref
+        refreshAt: 2000-01-23T04:56:07.000+00:00
+        flags: 0
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        title: title
+        value: value
+        parentId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        tags:
+        - tags
+        - tags
+      properties:
+        id:
+          format: uuid
+          pattern: "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}"
+          type: string
+        visible:
+          type: boolean
+        flags:
+          format: int32
+          type: integer
+        parentId:
+          format: uuid
+          pattern: "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}"
+          type: string
+        title:
+          type: string
+        aHref:
+          type: string
+        value:
+          type: string
+        postAt:
+          format: date-time
+          type: string
+        refreshAt:
+          format: date-time
+          type: string
+        tags:
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+    ResourceVectorRecord:
+      example:
+        visible: true
+        postAt: 2000-01-23T04:56:07.000+00:00
+        aHref: aHref
+        refreshAt: 2000-01-23T04:56:07.000+00:00
+        flags: 0
+        vector:
+        - 6.0274563
+        - 6.0274563
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        title: title
+        parentId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        tags:
+        - tags
+        - tags
+      properties:
+        id:
+          format: uuid
+          pattern: "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}"
+          type: string
+        visible:
+          type: boolean
+        flags:
+          format: int32
+          type: integer
+        parentId:
+          format: uuid
+          pattern: "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}"
+          type: string
+        title:
+          type: string
+        aHref:
+          type: string
+        vector:
+          items:
+            format: float
+            type: number
+          type: array
+        postAt:
+          format: date-time
+          type: string
+        refreshAt:
+          format: date-time
+          type: string
+        tags:
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+    ResourceXmlRecord:
+      example:
+        visible: true
+        postAt: 2000-01-23T04:56:07.000+00:00
+        aHref: aHref
+        xml: xml
+        refreshAt: 2000-01-23T04:56:07.000+00:00
+        flags: 0
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        title: title
+        parentId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        tags:
+        - tags
+        - tags
+      properties:
+        id:
+          format: uuid
+          pattern: "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}"
+          type: string
+        visible:
+          type: boolean
+        flags:
+          format: int32
+          type: integer
+        parentId:
+          format: uuid
+          pattern: "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}"
+          type: string
+        title:
+          type: string
+        aHref:
+          type: string
+        xml:
+          type: string
+        postAt:
+          format: date-time
+          type: string
+        refreshAt:
+          format: date-time
+          type: string
+        tags:
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+    UUID:
+      format: uuid
+      pattern: "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}"
+      type: string
+    UpdateBlobRecord:
+      example:
+        blob: blob
+        postAt: 2000-01-23T04:56:07.000+00:00
+        visible: true
+        aHref: aHref
+        refreshAt: 2000-01-23T04:56:07.000+00:00
+        flags: 0
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        title: title
+        parentId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        tags:
+        - tags
+        - tags
+      properties:
+        id:
+          format: uuid
+          pattern: "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}"
+          type: string
+        parentId:
+          format: uuid
+          pattern: "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}"
+          type: string
+        title:
+          maxLength: 4096
+          type: string
+        aHref:
+          maxLength: 4096
+          type: string
+        blob:
+          type: string
+        postAt:
+          format: date-time
+          type: string
+        refreshAt:
+          format: date-time
+          type: string
+        visible:
+          type: boolean
+        flags:
+          format: int32
+          type: integer
+        tags:
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+      required:
+      - id
+      - parentId
+      - refreshAt
+    UpdateJsonRecord:
+      example:
+        postAt: 2000-01-23T04:56:07.000+00:00
+        visible: true
+        aHref: aHref
+        refreshAt: 2000-01-23T04:56:07.000+00:00
+        flags: 0
+        json:
+          key: json
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        title: title
+        parentId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        tags:
+        - tags
+        - tags
+      properties:
+        id:
+          format: uuid
+          pattern: "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}"
+          type: string
+        parentId:
+          format: uuid
+          pattern: "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}"
+          type: string
+        title:
+          maxLength: 4096
+          type: string
+        aHref:
+          maxLength: 4096
+          type: string
+        json:
+          additionalProperties:
+            type: string
+        postAt:
+          format: date-time
+          type: string
+        refreshAt:
+          format: date-time
+          type: string
+        visible:
+          type: boolean
+        flags:
+          format: int32
+          type: integer
+        tags:
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+      required:
+      - id
+      - json
+      - parentId
+      - refreshAt
+    UpdateMarkdownRecord:
+      example:
+        postAt: 2000-01-23T04:56:07.000+00:00
+        visible: true
+        aHref: aHref
+        refreshAt: 2000-01-23T04:56:07.000+00:00
+        markdown: markdown
+        flags: 0
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        title: title
+        parentId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        tags:
+        - tags
+        - tags
+      properties:
+        id:
+          format: uuid
+          pattern: "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}"
+          type: string
+        parentId:
+          format: uuid
+          pattern: "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}"
+          type: string
+        title:
+          maxLength: 4096
+          type: string
+        aHref:
+          maxLength: 4096
+          type: string
+        markdown:
+          maxLength: 65535
+          type: string
+        postAt:
+          format: date-time
+          type: string
+        refreshAt:
+          format: date-time
+          type: string
+        visible:
+          type: boolean
+        flags:
+          format: int32
+          type: integer
+        tags:
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+      required:
+      - id
+      - markdown
+      - parentId
+      - refreshAt
+    UpdateSetRecord:
+      example:
+        postAt: 2000-01-23T04:56:07.000+00:00
+        visible: true
+        texts:
+        - texts
+        - texts
+        aHref: aHref
+        refreshAt: 2000-01-23T04:56:07.000+00:00
+        flags: 0
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        title: title
+        parentId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        tags:
+        - tags
+        - tags
+      properties:
+        id:
+          format: uuid
+          pattern: "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}"
+          type: string
+        parentId:
+          format: uuid
+          pattern: "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}"
+          type: string
+        title:
+          maxLength: 4096
+          type: string
+        aHref:
+          maxLength: 4096
+          type: string
+        texts:
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+        postAt:
+          format: date-time
+          type: string
+        refreshAt:
+          format: date-time
+          type: string
+        visible:
+          type: boolean
+        flags:
+          format: int32
+          type: integer
+        tags:
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+      required:
+      - id
+      - parentId
+      - refreshAt
+      - texts
+    UpdateValueRecord:
+      example:
+        postAt: 2000-01-23T04:56:07.000+00:00
+        visible: true
+        aHref: aHref
+        refreshAt: 2000-01-23T04:56:07.000+00:00
+        flags: 0
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        title: title
+        value: value
+        parentId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        tags:
+        - tags
+        - tags
+      properties:
+        id:
+          format: uuid
+          pattern: "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}"
+          type: string
+        parentId:
+          format: uuid
+          pattern: "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}"
+          type: string
+        title:
+          maxLength: 4096
+          type: string
+        aHref:
+          maxLength: 4096
+          type: string
+        value:
+          maxLength: 4096
+          type: string
+        postAt:
+          format: date-time
+          type: string
+        refreshAt:
+          format: date-time
+          type: string
+        visible:
+          type: boolean
+        flags:
+          format: int32
+          type: integer
+        tags:
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+      required:
+      - id
+      - parentId
+      - refreshAt
+      - value
+    UpdateVectorRecord:
+      example:
+        postAt: 2000-01-23T04:56:07.000+00:00
+        visible: true
+        aHref: aHref
+        refreshAt: 2000-01-23T04:56:07.000+00:00
+        flags: 6
+        vector:
+        - 0.8008282
+        - 0.8008282
+        - 0.8008282
+        - 0.8008282
+        - 0.8008282
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        title: title
+        parentId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        tags:
+        - tags
+        - tags
+      properties:
+        id:
+          format: uuid
+          pattern: "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}"
+          type: string
+        parentId:
+          format: uuid
+          pattern: "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}"
+          type: string
+        title:
+          maxLength: 4096
+          type: string
+        aHref:
+          maxLength: 4096
+          type: string
+        vector:
+          items:
+            format: float
+            type: number
+          maxItems: 1024
+          minItems: 1024
+          type: array
+        postAt:
+          format: date-time
+          type: string
+        refreshAt:
+          format: date-time
+          type: string
+        visible:
+          type: boolean
+        flags:
+          format: int32
+          type: integer
+        tags:
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+      required:
+      - id
+      - parentId
+      - refreshAt
+      - vector
+    UpdateXmlRecord:
+      example:
+        postAt: 2000-01-23T04:56:07.000+00:00
+        visible: true
+        aHref: aHref
+        xml: xml
+        refreshAt: 2000-01-23T04:56:07.000+00:00
+        flags: 0
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        title: title
+        parentId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        tags:
+        - tags
+        - tags
+      properties:
+        id:
+          format: uuid
+          pattern: "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}"
+          type: string
+        parentId:
+          format: uuid
+          pattern: "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}"
+          type: string
+        title:
+          maxLength: 4096
+          type: string
+        aHref:
+          maxLength: 4096
+          type: string
+        xml:
+          maxLength: 10485760
+          type: string
+        postAt:
+          format: date-time
+          type: string
+        refreshAt:
+          format: date-time
+          type: string
+        visible:
+          type: boolean
+        flags:
+          format: int32
+          type: integer
+        tags:
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+      required:
+      - id
+      - parentId
+      - refreshAt
+      - xml
+  securitySchemes:
+    SecurityScheme:
+      bearerFormat: JWT
+      description: Authentication
+      scheme: bearer
+      type: http
+

@@ -1,0 +1,112 @@
+plugins {
+    id 'java'
+    id 'io.quarkus'
+    id 'idea'
+    id 'org.liquibase.gradle' version '2.2.0' // Use the latest version
+}
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
+dependencies {
+    implementation project(':lib')
+    implementation enforcedPlatform("${quarkusPlatformGroupId}:${quarkusPlatformArtifactId}:${quarkusPlatformVersion}")
+    implementation enforcedPlatform("${quarkusPlatformGroupId}:quarkus-camel-bom:${quarkusPlatformVersion}")
+    implementation "io.quarkiverse.mapstruct:quarkus-mapstruct:${VERSION_QUARKUS_MAPSTRUCT}"
+    implementation 'io.quarkus:quarkus-arc'
+    implementation 'io.quarkus:quarkus-cache'
+    implementation 'io.quarkus:quarkus-container-image-docker'
+    implementation 'io.quarkus:quarkus-grpc'
+    implementation 'io.quarkus:quarkus-hibernate-reactive-panache'
+    implementation 'io.quarkus:quarkus-hibernate-validator'
+    implementation 'io.quarkus:quarkus-jackson'
+    implementation 'io.quarkus:quarkus-jdbc-postgresql'
+    implementation 'io.quarkus:quarkus-reactive-pg-client'
+    implementation 'io.quarkus:quarkus-rest'
+    implementation 'io.quarkus:quarkus-rest-client-jackson'
+    implementation 'io.quarkus:quarkus-rest-jackson'
+    implementation 'io.quarkus:quarkus-scheduler'
+    implementation 'io.quarkus:quarkus-smallrye-context-propagation'
+    implementation 'io.quarkus:quarkus-smallrye-jwt'
+    implementation 'io.quarkus:quarkus-smallrye-jwt-build'
+    implementation 'io.quarkus:quarkus-smallrye-openapi'
+    // TODO remove quarkus-openapi-generator-server in release
+    //noinspection VulnerableLibrariesLocal
+    implementation 'io.quarkiverse.openapi.generator:quarkus-openapi-generator-server:2.14.0-lts'
+    implementation "io.swagger.core.v3:swagger-annotations:${VERSION_SWAGGER_ANNOTATIONS}"
+
+    implementation "org.mapstruct:mapstruct:${VERSION_MAPSTRUCT}"
+
+    compileOnly "org.projectlombok:lombok:${VERSION_LOMBOK}"
+
+    annotationProcessor "org.mapstruct:mapstruct-processor:${VERSION_MAPSTRUCT}"
+    annotationProcessor "org.projectlombok:lombok-mapstruct-binding:${VERSION_ORG_PROJECTLOMBOK_LOMBOK_MAPSTRUCT_BINDING}"
+    annotationProcessor "org.projectlombok:lombok:${VERSION_LOMBOK}"
+    annotationProcessor project(":spi-mapstruct")
+    annotationProcessor project(":lib")
+
+    // Liquibase runtime dependencies for the plugin
+    liquibaseRuntime "org.liquibase:liquibase-core:${VERSION_ORG_LIQUIBASE_LIQUIBASE_CORE}"
+    liquibaseRuntime "org.liquibase:liquibase-gradle-plugin:${VERSION_ORG_LIQUIBASE_LIQUIBASE_GRADLE_PLUGIN}"
+    liquibaseRuntime "org.postgresql:postgresql:${VERSION_ORG_POSTGRESQL}"
+    liquibaseRuntime "info.picocli:picocli:${VERSION_INFO_PICOCLI_PICOCLI}"
+
+    testImplementation 'io.quarkus:quarkus-junit'
+    testImplementation 'io.quarkus:quarkus-junit-mockito'
+    testImplementation 'io.quarkus:quarkus-junit5-mockito'
+    testImplementation 'io.quarkus:quarkus-liquibase'
+    testImplementation 'io.quarkus:quarkus-panache-mock'
+    testImplementation 'io.quarkus:quarkus-test-security'
+    testImplementation 'io.quarkus:quarkus-test-vertx'
+    testImplementation 'io.rest-assured:rest-assured'
+    testImplementation "org.assertj:assertj-core:${VERSION_ORG_ASSERTJ_ASSERTJ_CORE}"
+    testImplementation "org.mockito:mockito-inline:${VERSION_ORG_MOCKITO_MOCKITO_INLINE}"
+    testImplementation "org.testcontainers:junit-jupiter:${VERSION_ORG_TESTCONTAINERS}"
+    testImplementation "org.testcontainers:postgresql:${VERSION_ORG_TESTCONTAINERS}"
+    testAnnotationProcessor "org.mapstruct:mapstruct-processor:${VERSION_MAPSTRUCT}"
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
+}
+
+compileJava {
+    options.encoding = 'UTF-8'
+    options.compilerArgs << '-parameters'
+}
+
+compileTestJava {
+    options.encoding = 'UTF-8'
+}
+
+sourceSets {
+    main {
+        java {
+            srcDir "$buildDir/classes/java/quarkus-generated-sources/grpc"
+        }
+    }
+}
+
+tasks.register('printSourceSets') {
+    doLast {
+        sourceSets.each {
+            println "projectDir: ${projectDir}"
+            println it
+            it.java.srcDirs.each { println "-> ${projectDir.relativePath(it)}" }
+            println ""
+        }
+    }
+}
+
+apply from: "${rootDir}/gradle/helpers/generators.gradle"
+apply from: "${rootDir}/gradle/helpers/liquibase.gradle"
+
+test {
+	useJUnitPlatform()
+    jvmArgs += [
+       "-javaagent:${configurations.testRuntimeClasspath.find { it.name.contains('byte-buddy-agent') }}"
+   ]
+}

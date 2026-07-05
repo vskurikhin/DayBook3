@@ -1,0 +1,173 @@
+.container {
+  display: flex;
+  justify-content: center;
+  background-color: rgb(0 128 128 / 10%);
+  padding: 40px 20px;
+  min-height: 100vh;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.formWrapper {
+  display: flex;
+  justify-content: center;
+  box-sizing: border-box;
+  align-items: center;
+  width: 100%;
+}
+
+.form {
+  padding: 20px 30px;
+  width: 85%;
+  max-width: 1280px;
+  min-width: 1024px;
+  flex: 1;
+  background: #fff;
+  box-shadow: 2px 2px 7px 2px rgb(0 0 0 / 20%);
+  margin-right: 10px;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
+}
+
+.formTitle {
+  color: teal;
+  font-weight: 300;
+  text-align: left;
+  margin-bottom: 20px;
+  font-size: 30px;
+
+  @media (max-width: 768px) {
+    font-size: 22px;
+  }
+}
+
+.formGroup {
+  position: relative;
+  margin: 10px 0;
+}
+
+.input {
+  font-size: 16px;
+  padding: 11px 12px;
+  width: 100%;
+  outline: 1px solid #d4d5d9;
+  border: none;
+  color: #282c3f;
+  caret-color: teal;
+  font-weight: 500;
+
+  &:focus {
+    outline: 1px solid teal;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 14px;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 14px;
+  }
+}
+
+.submitButton {
+  background: teal;
+  color: white;
+  border: 1px solid transparent;
+  padding: 10px 20px;
+  font-size: 14px;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.validationError {
+  color: red;
+  height: 20px;
+}
+
+.text {
+  color: #1b2839;
+  font-weight: 500;
+
+  @media (max-width: 768px) {
+    font-size: 14px;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 14px;
+  }
+}
+
+.link {
+  color: teal;
+  margin-left: 5px;
+}
+
+.outputStyle {
+  margin-left: auto;
+  margin-right: auto;
+  padding: 10px;
+}
+
+table.blueTable {
+  border: 0px;
+  width: 100%;
+  text-align: left;
+  border-collapse: collapse;
+}
+table.blueTable td, table.blueTable th {
+  border: 0px;
+  padding: 3px 2px;
+}
+table.blueTable tbody td {
+  font-size: 13px;
+}
+table.blueTable tr:nth-child(even) {
+}
+table.blueTable thead {
+  border-bottom: 0px;
+}
+table.blueTable thead th {
+  font-size: 15px;
+  font-weight: bold;
+  border-left: 0px;
+}
+table.blueTable td:first-child,
+table.blueTable th:first-child {
+  width: 50%;
+}
+table.blueTable thead th:first-child {
+  border-left: none;
+}
+
+table.blueTable tfoot {
+  font-size: 14px;
+  font-weight: bold;
+}
+table.blueTable tfoot td {
+  font-size: 14px;
+}
+table.blueTable tfoot .links {
+  text-align: right;
+}
+table.blueTable tfoot .links a{
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 5px;
+}
+.topAlign {
+  vertical-align: top;
+}
+.rightAlign {
+  text-align: right;
+}
+
+.buttonGroup {
+    display: flex;
+    gap: 12px;
+
+    .submitButton {
+        flex: 1;
+    }
+}

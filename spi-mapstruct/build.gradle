@@ -1,0 +1,16 @@
+apply plugin: 'java'
+
+/*
+ * This file was last modified at 2026.03.01 01:11 by Victor N. Skurikhin.
+ * This is free and unencumbered software released into the public domain.
+ * For more information, please refer to <http://unlicense.org>
+ * build.gradle
+ * $Id$
+ */
+
+// sourceCompatibility = JavaVersion.VERSION_21
+
+dependencies {
+    implementation "org.mapstruct:mapstruct:${VERSION_MAPSTRUCT}"
+    implementation "org.mapstruct:mapstruct-processor:${VERSION_MAPSTRUCT}"
+}

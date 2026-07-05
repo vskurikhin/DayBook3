@@ -1,0 +1,2639 @@
+openapi: 3.1.0
+info:
+  title: OpenAPI definition
+  version: v0
+servers:
+- description: Generated server url
+  url: http://localhost:8082
+paths:
+  /core/api/v2/xml-record:
+    post:
+      operationId: createXmlRecord
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NewXmlRecord"
+        required: true
+      responses:
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Bad Request
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Not Found
+        "500":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Internal Server Error
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ResourceXmlRecord"
+          description: OK
+      tags:
+      - xml-record-controller
+      x-content-type: application/json
+      x-accepts:
+      - '*/*'
+    put:
+      operationId: updateXmlRecord
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateXmlRecord"
+        required: true
+      responses:
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Bad Request
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Not Found
+        "500":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Internal Server Error
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ResourceXmlRecord"
+          description: OK
+      tags:
+      - xml-record-controller
+      x-content-type: application/json
+      x-accepts:
+      - '*/*'
+  /core/api/v2/vector-record:
+    post:
+      operationId: createVectorRecord
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NewVectorRecord"
+        required: true
+      responses:
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Bad Request
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Not Found
+        "500":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Internal Server Error
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ResourceVectorRecord"
+          description: OK
+      tags:
+      - vector-record-controller
+      x-content-type: application/json
+      x-accepts:
+      - '*/*'
+    put:
+      operationId: updateVectorRecord
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateVectorRecord"
+        required: true
+      responses:
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Bad Request
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Not Found
+        "500":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Internal Server Error
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ResourceVectorRecord"
+          description: OK
+      tags:
+      - vector-record-controller
+      x-content-type: application/json
+      x-accepts:
+      - '*/*'
+  /core/api/v2/value-record:
+    post:
+      operationId: createValueRecord
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NewValueRecord"
+        required: true
+      responses:
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Bad Request
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Not Found
+        "500":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Internal Server Error
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ResourceValueRecord"
+          description: OK
+      tags:
+      - value-record-controller
+      x-content-type: application/json
+      x-accepts:
+      - '*/*'
+    put:
+      operationId: updateValueRecord
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateValueRecord"
+        required: true
+      responses:
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Bad Request
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Not Found
+        "500":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Internal Server Error
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ResourceValueRecord"
+          description: OK
+      tags:
+      - value-record-controller
+      x-content-type: application/json
+      x-accepts:
+      - '*/*'
+  /core/api/v2/set-record:
+    post:
+      operationId: createSetRecord
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NewSetRecord"
+        required: true
+      responses:
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Bad Request
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Not Found
+        "500":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Internal Server Error
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ResourceSetRecord"
+          description: OK
+      tags:
+      - set-record-controller
+      x-content-type: application/json
+      x-accepts:
+      - '*/*'
+    put:
+      operationId: updateSetRecord
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateSetRecord"
+        required: true
+      responses:
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Bad Request
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Not Found
+        "500":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Internal Server Error
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ResourceSetRecord"
+          description: OK
+      tags:
+      - set-record-controller
+      x-content-type: application/json
+      x-accepts:
+      - '*/*'
+  /core/api/v2/markdown-record:
+    post:
+      operationId: createMarkdownRecord
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NewMarkdownRecord"
+        required: true
+      responses:
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Bad Request
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Not Found
+        "500":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Internal Server Error
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ResourceMarkdownRecord"
+          description: OK
+      tags:
+      - markdown-record-controller
+      x-content-type: application/json
+      x-accepts:
+      - '*/*'
+    put:
+      operationId: updateMarkdownRecord
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateMarkdownRecord"
+        required: true
+      responses:
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Bad Request
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Not Found
+        "500":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Internal Server Error
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ResourceMarkdownRecord"
+          description: OK
+      tags:
+      - markdown-record-controller
+      x-content-type: application/json
+      x-accepts:
+      - '*/*'
+  /core/api/v2/json-record:
+    post:
+      operationId: createJsonRecord
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NewJsonRecord"
+        required: true
+      responses:
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Bad Request
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Not Found
+        "500":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Internal Server Error
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ResourceJsonRecord"
+          description: OK
+      tags:
+      - json-record-controller
+      x-content-type: application/json
+      x-accepts:
+      - '*/*'
+    put:
+      operationId: updateJsonRecord
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateJsonRecord"
+        required: true
+      responses:
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Bad Request
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Not Found
+        "500":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Internal Server Error
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ResourceJsonRecord"
+          description: OK
+      tags:
+      - json-record-controller
+      x-content-type: application/json
+      x-accepts:
+      - '*/*'
+  /core/api/v2/blob-record:
+    post:
+      operationId: createBlobRecord
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NewBlobRecord"
+        required: true
+      responses:
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Bad Request
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Not Found
+        "500":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Internal Server Error
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ResourceBlobRecord"
+          description: OK
+      tags:
+      - blob-record-controller
+      x-content-type: application/json
+      x-accepts:
+      - '*/*'
+    put:
+      operationId: updateBlobRecord
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateBlobRecord"
+        required: true
+      responses:
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Bad Request
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Not Found
+        "500":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Internal Server Error
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ResourceBlobRecord"
+          description: OK
+      tags:
+      - blob-record-controller
+      x-content-type: application/json
+      x-accepts:
+      - '*/*'
+  /core/api/v2/xml-record/{id}:
+    delete:
+      operationId: deleteXmlRecord
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      responses:
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Bad Request
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Not Found
+        "500":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Internal Server Error
+        "200":
+          description: OK
+      tags:
+      - xml-record-controller
+      x-accepts:
+      - '*/*'
+    get:
+      operationId: readXmlRecord
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      responses:
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Bad Request
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Not Found
+        "500":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Internal Server Error
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ResourceXmlRecord"
+          description: OK
+      tags:
+      - xml-record-controller
+      x-accepts:
+      - '*/*'
+  /core/api/v2/vector-record/{id}:
+    delete:
+      operationId: deleteVectorRecord
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      responses:
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Bad Request
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Not Found
+        "500":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Internal Server Error
+        "200":
+          description: OK
+      tags:
+      - vector-record-controller
+      x-accepts:
+      - '*/*'
+    get:
+      operationId: readVectorRecord
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      responses:
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Bad Request
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Not Found
+        "500":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Internal Server Error
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ResourceVectorRecord"
+          description: OK
+      tags:
+      - vector-record-controller
+      x-accepts:
+      - '*/*'
+  /core/api/v2/value-record/{id}:
+    delete:
+      operationId: deleteValueRecord
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      responses:
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Bad Request
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Not Found
+        "500":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Internal Server Error
+        "200":
+          description: OK
+      tags:
+      - value-record-controller
+      x-accepts:
+      - '*/*'
+    get:
+      operationId: readValueRecord
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      responses:
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Bad Request
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Not Found
+        "500":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Internal Server Error
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ResourceValueRecord"
+          description: OK
+      tags:
+      - value-record-controller
+      x-accepts:
+      - '*/*'
+  /core/api/v2/set-record/{id}:
+    delete:
+      operationId: deleteSetRecord
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      responses:
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Bad Request
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Not Found
+        "500":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Internal Server Error
+        "200":
+          description: OK
+      tags:
+      - set-record-controller
+      x-accepts:
+      - '*/*'
+    get:
+      operationId: readSetRecord
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      responses:
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Bad Request
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Not Found
+        "500":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Internal Server Error
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ResourceSetRecord"
+          description: OK
+      tags:
+      - set-record-controller
+      x-accepts:
+      - '*/*'
+  /core/api/v2/records-view:
+    get:
+      operationId: getAllRecords
+      parameters:
+      - explode: true
+        in: query
+        name: filter
+        required: true
+        schema:
+          $ref: "#/components/schemas/ResourceRecordViewFilter"
+        style: form
+      - explode: true
+        in: query
+        name: pageable
+        required: true
+        schema:
+          $ref: "#/components/schemas/Pageable"
+        style: form
+      responses:
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Bad Request
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Not Found
+        "500":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Internal Server Error
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/PagedModelEntityModelResourceRecordView"
+          description: OK
+      tags:
+      - record-view-controller
+      x-accepts:
+      - '*/*'
+  /core/api/v2/records-view/{id}:
+    get:
+      operationId: getRecord
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      responses:
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Bad Request
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Not Found
+        "500":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Internal Server Error
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ResourceRecordView"
+          description: OK
+      tags:
+      - record-view-controller
+      x-accepts:
+      - '*/*'
+  /core/api/v2/markdown-record/{id}:
+    delete:
+      operationId: deleteMarkdownRecord
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      responses:
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Bad Request
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Not Found
+        "500":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Internal Server Error
+        "200":
+          description: OK
+      tags:
+      - markdown-record-controller
+      x-accepts:
+      - '*/*'
+    get:
+      operationId: readMarkdownRecord
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      responses:
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Bad Request
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Not Found
+        "500":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Internal Server Error
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ResourceMarkdownRecord"
+          description: OK
+      tags:
+      - markdown-record-controller
+      x-accepts:
+      - '*/*'
+  /core/api/v2/json-record/{id}:
+    delete:
+      operationId: deleteJsonRecord
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      responses:
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Bad Request
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Not Found
+        "500":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Internal Server Error
+        "200":
+          description: OK
+      tags:
+      - json-record-controller
+      x-accepts:
+      - '*/*'
+    get:
+      operationId: readJsonRecord
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      responses:
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Bad Request
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Not Found
+        "500":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Internal Server Error
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ResourceJsonRecord"
+          description: OK
+      tags:
+      - json-record-controller
+      x-accepts:
+      - '*/*'
+  /core/api/v2/blob-record/{id}:
+    delete:
+      operationId: deleteBlobRecord
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      responses:
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Bad Request
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Not Found
+        "500":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Internal Server Error
+        "200":
+          description: OK
+      tags:
+      - blob-record-controller
+      x-accepts:
+      - '*/*'
+    get:
+      operationId: readBlobRecord
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      responses:
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Bad Request
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Not Found
+        "500":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Internal Server Error
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ResourceBlobRecord"
+          description: OK
+      tags:
+      - blob-record-controller
+      x-accepts:
+      - '*/*'
+components:
+  schemas:
+    ErrorResponse:
+      example:
+        time: 0
+        error: error
+      properties:
+        error:
+          type: string
+        time:
+          format: int64
+          type: integer
+    UpdateXmlRecord:
+      example:
+        postAt: 2000-01-23T04:56:07.000+00:00
+        visible: true
+        aHref: aHref
+        xml: xml
+        refreshAt: 2000-01-23T04:56:07.000+00:00
+        flags: 0
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        title: title
+        parentId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        tags:
+        - tags
+        - tags
+      properties:
+        id:
+          format: uuid
+          type: string
+        parentId:
+          default: 00000000-0000-0000-0000-000000000000
+          format: uuid
+          type: string
+        title:
+          type: string
+        aHref:
+          type: string
+        xml:
+          type: string
+        postAt:
+          format: date-time
+          type: string
+        refreshAt:
+          format: date-time
+          type: string
+        visible:
+          type: boolean
+        flags:
+          format: int32
+          type: integer
+        tags:
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+      required:
+      - id
+      - parentId
+      - refreshAt
+      - xml
+    ResourceXmlRecord:
+      example:
+        visible: true
+        postAt: 2000-01-23T04:56:07.000+00:00
+        aHref: aHref
+        xml: xml
+        refreshAt: 2000-01-23T04:56:07.000+00:00
+        flags: 6
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        title: title
+        parentId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        tags:
+        - tags
+        - tags
+      properties:
+        id:
+          format: uuid
+          type: string
+        visible:
+          type: boolean
+        flags:
+          format: int32
+          type: integer
+        parentId:
+          format: uuid
+          type: string
+        title:
+          type: string
+        aHref:
+          type: string
+        xml:
+          type: string
+        postAt:
+          format: date-time
+          type: string
+        refreshAt:
+          format: date-time
+          type: string
+        tags:
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+    UpdateVectorRecord:
+      example:
+        postAt: 2000-01-23T04:56:07.000+00:00
+        visible: true
+        aHref: aHref
+        refreshAt: 2000-01-23T04:56:07.000+00:00
+        flags: 6
+        vector:
+        - 0.8008282
+        - 0.8008282
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        title: title
+        parentId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        tags:
+        - tags
+        - tags
+      properties:
+        id:
+          format: uuid
+          type: string
+        parentId:
+          default: 00000000-0000-0000-0000-000000000000
+          format: uuid
+          type: string
+        title:
+          type: string
+        aHref:
+          type: string
+        vector:
+          items:
+            format: float
+            type: number
+          type: array
+        postAt:
+          format: date-time
+          type: string
+        refreshAt:
+          format: date-time
+          type: string
+        visible:
+          type: boolean
+        flags:
+          format: int32
+          type: integer
+        tags:
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+      required:
+      - id
+      - parentId
+      - refreshAt
+      - vector
+    ResourceVectorRecord:
+      example:
+        visible: true
+        postAt: 2000-01-23T04:56:07.000+00:00
+        aHref: aHref
+        refreshAt: 2000-01-23T04:56:07.000+00:00
+        flags: 0
+        vector:
+        - 6.0274563
+        - 6.0274563
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        title: title
+        parentId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        tags:
+        - tags
+        - tags
+      properties:
+        id:
+          format: uuid
+          type: string
+        visible:
+          type: boolean
+        flags:
+          format: int32
+          type: integer
+        parentId:
+          format: uuid
+          type: string
+        title:
+          type: string
+        aHref:
+          type: string
+        vector:
+          items:
+            format: float
+            type: number
+          type: array
+        postAt:
+          format: date-time
+          type: string
+        refreshAt:
+          format: date-time
+          type: string
+        tags:
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+    UpdateValueRecord:
+      example:
+        postAt: 2000-01-23T04:56:07.000+00:00
+        visible: true
+        aHref: aHref
+        refreshAt: 2000-01-23T04:56:07.000+00:00
+        flags: 0
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        title: title
+        value: value
+        parentId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        tags:
+        - tags
+        - tags
+      properties:
+        id:
+          format: uuid
+          type: string
+        parentId:
+          default: 00000000-0000-0000-0000-000000000000
+          format: uuid
+          type: string
+        title:
+          type: string
+        value:
+          type: string
+        aHref:
+          type: string
+        postAt:
+          format: date-time
+          type: string
+        refreshAt:
+          format: date-time
+          type: string
+        visible:
+          type: boolean
+        flags:
+          format: int32
+          type: integer
+        tags:
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+      required:
+      - id
+      - parentId
+      - refreshAt
+      - value
+    ResourceValueRecord:
+      example:
+        visible: true
+        postAt: 2000-01-23T04:56:07.000+00:00
+        aHref: aHref
+        refreshAt: 2000-01-23T04:56:07.000+00:00
+        flags: 0
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        title: title
+        value: value
+        parentId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        tags:
+        - tags
+        - tags
+      properties:
+        id:
+          format: uuid
+          type: string
+        visible:
+          type: boolean
+        flags:
+          format: int32
+          type: integer
+        parentId:
+          format: uuid
+          type: string
+        title:
+          type: string
+        aHref:
+          type: string
+        value:
+          type: string
+        postAt:
+          format: date-time
+          type: string
+        refreshAt:
+          format: date-time
+          type: string
+        tags:
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+    UpdateSetRecord:
+      example:
+        postAt: 2000-01-23T04:56:07.000+00:00
+        visible: true
+        texts:
+        - texts
+        - texts
+        aHref: aHref
+        refreshAt: 2000-01-23T04:56:07.000+00:00
+        flags: 0
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        title: title
+        parentId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        tags:
+        - tags
+        - tags
+      properties:
+        id:
+          format: uuid
+          type: string
+        parentId:
+          default: 00000000-0000-0000-0000-000000000000
+          format: uuid
+          type: string
+        title:
+          type: string
+        aHref:
+          type: string
+        texts:
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+        postAt:
+          format: date-time
+          type: string
+        refreshAt:
+          format: date-time
+          type: string
+        visible:
+          type: boolean
+        flags:
+          format: int32
+          type: integer
+        tags:
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+      required:
+      - id
+      - parentId
+      - refreshAt
+    ResourceSetRecord:
+      example:
+        visible: true
+        postAt: 2000-01-23T04:56:07.000+00:00
+        texts:
+        - texts
+        - texts
+        aHref: aHref
+        refreshAt: 2000-01-23T04:56:07.000+00:00
+        flags: 0
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        title: title
+        parentId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        tags:
+        - tags
+        - tags
+      properties:
+        id:
+          format: uuid
+          type: string
+        visible:
+          type: boolean
+        flags:
+          format: int32
+          type: integer
+        parentId:
+          format: uuid
+          type: string
+        title:
+          type: string
+        aHref:
+          type: string
+        texts:
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+        postAt:
+          format: date-time
+          type: string
+        refreshAt:
+          format: date-time
+          type: string
+        tags:
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+    UpdateMarkdownRecord:
+      example:
+        postAt: 2000-01-23T04:56:07.000+00:00
+        visible: true
+        aHref: aHref
+        refreshAt: 2000-01-23T04:56:07.000+00:00
+        markdown: markdown
+        flags: 0
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        title: title
+        parentId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        tags:
+        - tags
+        - tags
+      properties:
+        id:
+          format: uuid
+          type: string
+        parentId:
+          default: 00000000-0000-0000-0000-000000000000
+          format: uuid
+          type: string
+        title:
+          type: string
+        aHref:
+          type: string
+        markdown:
+          type: string
+        postAt:
+          format: date-time
+          type: string
+        refreshAt:
+          format: date-time
+          type: string
+        visible:
+          type: boolean
+        flags:
+          format: int32
+          type: integer
+        tags:
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+      required:
+      - id
+      - markdown
+      - parentId
+      - refreshAt
+    ResourceMarkdownRecord:
+      example:
+        visible: true
+        postAt: 2000-01-23T04:56:07.000+00:00
+        aHref: aHref
+        refreshAt: 2000-01-23T04:56:07.000+00:00
+        flags: 0
+        markdown: markdown
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        title: title
+        parentId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        tags:
+        - tags
+        - tags
+      properties:
+        id:
+          format: uuid
+          type: string
+        visible:
+          type: boolean
+        flags:
+          format: int32
+          type: integer
+        parentId:
+          format: uuid
+          type: string
+        title:
+          type: string
+        aHref:
+          type: string
+        markdown:
+          type: string
+        postAt:
+          format: date-time
+          type: string
+        refreshAt:
+          format: date-time
+          type: string
+        tags:
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+    UpdateJsonRecord:
+      example:
+        postAt: 2000-01-23T04:56:07.000+00:00
+        visible: true
+        aHref: aHref
+        refreshAt: 2000-01-23T04:56:07.000+00:00
+        flags: 0
+        json:
+          key: json
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        title: title
+        parentId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        tags:
+        - tags
+        - tags
+      properties:
+        id:
+          format: uuid
+          type: string
+        parentId:
+          default: 00000000-0000-0000-0000-000000000000
+          format: uuid
+          type: string
+        title:
+          type: string
+        aHref:
+          type: string
+        json:
+          additionalProperties:
+            type: string
+        postAt:
+          format: date-time
+          type: string
+        refreshAt:
+          format: date-time
+          type: string
+        visible:
+          type: boolean
+        flags:
+          format: int32
+          type: integer
+        tags:
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+      required:
+      - id
+      - json
+      - parentId
+      - refreshAt
+    ResourceJsonRecord:
+      example:
+        visible: true
+        postAt: 2000-01-23T04:56:07.000+00:00
+        aHref: aHref
+        refreshAt: 2000-01-23T04:56:07.000+00:00
+        flags: 0
+        json:
+          key: json
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        title: title
+        parentId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        tags:
+        - tags
+        - tags
+      properties:
+        id:
+          format: uuid
+          type: string
+        visible:
+          type: boolean
+        flags:
+          format: int32
+          type: integer
+        parentId:
+          format: uuid
+          type: string
+        title:
+          type: string
+        aHref:
+          type: string
+        json:
+          additionalProperties:
+            type: string
+        postAt:
+          format: date-time
+          type: string
+        refreshAt:
+          format: date-time
+          type: string
+        tags:
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+    UpdateBlobRecord:
+      example:
+        blob: blob
+        postAt: 2000-01-23T04:56:07.000+00:00
+        visible: true
+        aHref: aHref
+        refreshAt: 2000-01-23T04:56:07.000+00:00
+        flags: 0
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        title: title
+        parentId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        tags:
+        - tags
+        - tags
+      properties:
+        id:
+          format: uuid
+          type: string
+        parentId:
+          default: 00000000-0000-0000-0000-000000000000
+          format: uuid
+          type: string
+        title:
+          type: string
+        aHref:
+          type: string
+        blob:
+          format: byte
+          type: string
+        postAt:
+          format: date-time
+          type: string
+        refreshAt:
+          format: date-time
+          type: string
+        visible:
+          type: boolean
+        flags:
+          format: int32
+          type: integer
+        tags:
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+      required:
+      - id
+      - parentId
+      - refreshAt
+    ResourceBlobRecord:
+      example:
+        visible: true
+        blob: blob
+        postAt: 2000-01-23T04:56:07.000+00:00
+        aHref: aHref
+        refreshAt: 2000-01-23T04:56:07.000+00:00
+        flags: 0
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        title: title
+        parentId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        tags:
+        - tags
+        - tags
+      properties:
+        id:
+          format: uuid
+          type: string
+        visible:
+          type: boolean
+        flags:
+          format: int32
+          type: integer
+        parentId:
+          format: uuid
+          type: string
+        title:
+          type: string
+        aHref:
+          type: string
+        blob:
+          format: byte
+          type: string
+        postAt:
+          format: date-time
+          type: string
+        refreshAt:
+          format: date-time
+          type: string
+        tags:
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+    NewXmlRecord:
+      example:
+        visible: true
+        postAt: 2000-01-23T04:56:07.000+00:00
+        aHref: aHref
+        xml: xml
+        flags: 0
+        title: title
+        parentId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        tags:
+        - tags
+        - tags
+      properties:
+        visible:
+          type: boolean
+        flags:
+          format: int32
+          type: integer
+        parentId:
+          default: 00000000-0000-0000-0000-000000000000
+          format: uuid
+          type: string
+        title:
+          type: string
+        aHref:
+          type: string
+        xml:
+          type: string
+        postAt:
+          format: date-time
+          type: string
+        tags:
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+      required:
+      - parentId
+      - postAt
+      - xml
+    NewVectorRecord:
+      example:
+        visible: true
+        postAt: 2000-01-23T04:56:07.000+00:00
+        aHref: aHref
+        flags: 0
+        vector:
+        - 6.0274563
+        - 6.0274563
+        title: title
+        parentId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        tags:
+        - tags
+        - tags
+      properties:
+        visible:
+          type: boolean
+        flags:
+          format: int32
+          type: integer
+        parentId:
+          default: 00000000-0000-0000-0000-000000000000
+          format: uuid
+          type: string
+        title:
+          type: string
+        aHref:
+          type: string
+        vector:
+          items:
+            format: float
+            type: number
+          type: array
+        postAt:
+          format: date-time
+          type: string
+        tags:
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+      required:
+      - parentId
+      - postAt
+      - vector
+    NewValueRecord:
+      example:
+        visible: true
+        postAt: 2000-01-23T04:56:07.000+00:00
+        aHref: aHref
+        flags: 0
+        title: title
+        value: value
+        parentId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        tags:
+        - tags
+        - tags
+      properties:
+        visible:
+          type: boolean
+        flags:
+          format: int32
+          type: integer
+        parentId:
+          default: 00000000-0000-0000-0000-000000000000
+          format: uuid
+          type: string
+        title:
+          type: string
+        aHref:
+          type: string
+        value:
+          type: string
+        postAt:
+          format: date-time
+          type: string
+        tags:
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+      required:
+      - parentId
+      - postAt
+      - value
+    NewSetRecord:
+      example:
+        visible: true
+        postAt: 2000-01-23T04:56:07.000+00:00
+        texts:
+        - texts
+        - texts
+        aHref: aHref
+        flags: 0
+        title: title
+        parentId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        tags:
+        - tags
+        - tags
+      properties:
+        visible:
+          type: boolean
+        flags:
+          format: int32
+          type: integer
+        parentId:
+          default: 00000000-0000-0000-0000-000000000000
+          format: uuid
+          type: string
+        title:
+          type: string
+        aHref:
+          type: string
+        texts:
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+        postAt:
+          format: date-time
+          type: string
+        tags:
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+      required:
+      - parentId
+      - postAt
+      - texts
+    NewMarkdownRecord:
+      example:
+        visible: true
+        postAt: 2000-01-23T04:56:07.000+00:00
+        aHref: aHref
+        flags: 0
+        markdown: markdown
+        title: title
+        parentId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        tags:
+        - tags
+        - tags
+      properties:
+        visible:
+          type: boolean
+        flags:
+          format: int32
+          type: integer
+        parentId:
+          default: 00000000-0000-0000-0000-000000000000
+          format: uuid
+          type: string
+        title:
+          type: string
+        aHref:
+          type: string
+        markdown:
+          type: string
+        postAt:
+          format: date-time
+          type: string
+        tags:
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+      required:
+      - markdown
+      - parentId
+      - postAt
+    NewJsonRecord:
+      example:
+        visible: true
+        postAt: 2000-01-23T04:56:07.000+00:00
+        aHref: aHref
+        flags: 0
+        json:
+          key: json
+        title: title
+        parentId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        tags:
+        - tags
+        - tags
+      properties:
+        visible:
+          type: boolean
+        flags:
+          format: int32
+          type: integer
+        parentId:
+          default: 00000000-0000-0000-0000-000000000000
+          format: uuid
+          type: string
+        title:
+          type: string
+        aHref:
+          type: string
+        json:
+          additionalProperties:
+            type: string
+        postAt:
+          format: date-time
+          type: string
+        tags:
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+      required:
+      - json
+      - parentId
+      - postAt
+    NewBlobRecord:
+      example:
+        visible: true
+        blob: blob
+        postAt: 2000-01-23T04:56:07.000+00:00
+        aHref: aHref
+        flags: 0
+        title: title
+        parentId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        tags:
+        - tags
+        - tags
+      properties:
+        visible:
+          type: boolean
+        flags:
+          format: int32
+          type: integer
+        parentId:
+          default: 00000000-0000-0000-0000-000000000000
+          format: uuid
+          type: string
+        title:
+          type: string
+        aHref:
+          type: string
+        blob:
+          format: byte
+          type: string
+        postAt:
+          format: date-time
+          type: string
+        tags:
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+      required:
+      - parentId
+      - postAt
+    ResourceRecordViewFilter:
+      properties:
+        title:
+          type: string
+        fromTime:
+          format: date-time
+          type: string
+        fromDate:
+          format: date-time
+          type: string
+        toDate:
+          format: date-time
+          type: string
+        withDisabled:
+          type: boolean
+    Pageable:
+      properties:
+        page:
+          format: int32
+          minimum: 0
+          type: integer
+        size:
+          format: int32
+          minimum: 1
+          type: integer
+        sort:
+          items:
+            type: string
+          type: array
+    EntityModelResourceRecordView:
+      example:
+        fileName: fileName
+        visible: true
+        postAt: 2000-01-23T04:56:07.000+00:00
+        _links:
+          key:
+            hreflang: hreflang
+            templated: true
+            profile: profile
+            name: name
+            href: href
+            title: title
+            type: type
+            deprecation: deprecation
+        flags: 0
+        link: link
+        type: Base
+        userName: userName
+        title: title
+        parentId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        enabled: true
+        tags:
+        - tags
+        - tags
+        lastChangedTime: 2000-01-23T04:56:07.000+00:00
+        blob: blob
+        texts:
+        - texts
+        - texts
+        aHref: aHref
+        xml: xml
+        refreshAt: 2000-01-23T04:56:07.000+00:00
+        markdown: markdown
+        json:
+          key: json
+        html: html
+        vector:
+        - 6.0274563
+        - 6.0274563
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        value: value
+      properties:
+        id:
+          format: uuid
+          type: string
+        visible:
+          type: boolean
+        flags:
+          format: int32
+          type: integer
+        parentId:
+          format: uuid
+          type: string
+        type:
+          enum:
+          - Base
+          - Blob
+          - Json
+          - Set
+          - Text
+          - Vector
+          - Xml
+          type: string
+        userName:
+          type: string
+        postAt:
+          format: date-time
+          type: string
+        refreshAt:
+          format: date-time
+          type: string
+        lastChangedTime:
+          format: date-time
+          type: string
+        enabled:
+          type: boolean
+        title:
+          type: string
+        aHref:
+          type: string
+        blob:
+          format: byte
+          type: string
+        json:
+          additionalProperties:
+            type: string
+        texts:
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+        fileName:
+          type: string
+        html:
+          type: string
+        link:
+          type: string
+        markdown:
+          type: string
+        value:
+          type: string
+        vector:
+          items:
+            format: float
+            type: number
+          type: array
+        xml:
+          type: string
+        tags:
+          items:
+            type: string
+          type: array
+        _links:
+          additionalProperties:
+            $ref: "#/components/schemas/Link"
+    PageMetadata:
+      example:
+        number: 2
+        size: 1
+        totalPages: 5
+        totalElements: 5
+      properties:
+        size:
+          format: int64
+          type: integer
+        totalElements:
+          format: int64
+          type: integer
+        totalPages:
+          format: int64
+          type: integer
+        number:
+          format: int64
+          type: integer
+    PagedModelEntityModelResourceRecordView:
+      example:
+        _embedded:
+          resourceRecordViewList:
+          - fileName: fileName
+            visible: true
+            postAt: 2000-01-23T04:56:07.000+00:00
+            _links:
+              key:
+                hreflang: hreflang
+                templated: true
+                profile: profile
+                name: name
+                href: href
+                title: title
+                type: type
+                deprecation: deprecation
+            flags: 0
+            link: link
+            type: Base
+            userName: userName
+            title: title
+            parentId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            enabled: true
+            tags:
+            - tags
+            - tags
+            lastChangedTime: 2000-01-23T04:56:07.000+00:00
+            blob: blob
+            texts:
+            - texts
+            - texts
+            aHref: aHref
+            xml: xml
+            refreshAt: 2000-01-23T04:56:07.000+00:00
+            markdown: markdown
+            json:
+              key: json
+            html: html
+            vector:
+            - 6.0274563
+            - 6.0274563
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            value: value
+          - fileName: fileName
+            visible: true
+            postAt: 2000-01-23T04:56:07.000+00:00
+            _links:
+              key:
+                hreflang: hreflang
+                templated: true
+                profile: profile
+                name: name
+                href: href
+                title: title
+                type: type
+                deprecation: deprecation
+            flags: 0
+            link: link
+            type: Base
+            userName: userName
+            title: title
+            parentId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            enabled: true
+            tags:
+            - tags
+            - tags
+            lastChangedTime: 2000-01-23T04:56:07.000+00:00
+            blob: blob
+            texts:
+            - texts
+            - texts
+            aHref: aHref
+            xml: xml
+            refreshAt: 2000-01-23T04:56:07.000+00:00
+            markdown: markdown
+            json:
+              key: json
+            html: html
+            vector:
+            - 6.0274563
+            - 6.0274563
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            value: value
+        _links:
+          key:
+            hreflang: hreflang
+            templated: true
+            profile: profile
+            name: name
+            href: href
+            title: title
+            type: type
+            deprecation: deprecation
+        page:
+          number: 2
+          size: 1
+          totalPages: 5
+          totalElements: 5
+      properties:
+        _embedded:
+          $ref: "#/components/schemas/PagedModelEntityModelResourceRecordView__embedded"
+        _links:
+          additionalProperties:
+            $ref: "#/components/schemas/Link"
+        page:
+          $ref: "#/components/schemas/PageMetadata"
+    ResourceRecordView:
+      example:
+        fileName: fileName
+        visible: true
+        postAt: 2000-01-23T04:56:07.000+00:00
+        flags: 0
+        link: link
+        type: Base
+        userName: userName
+        title: title
+        parentId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        enabled: true
+        tags:
+        - tags
+        - tags
+        lastChangedTime: 2000-01-23T04:56:07.000+00:00
+        blob: blob
+        texts:
+        - texts
+        - texts
+        aHref: aHref
+        xml: xml
+        refreshAt: 2000-01-23T04:56:07.000+00:00
+        markdown: markdown
+        json:
+          key: json
+        html: html
+        vector:
+        - 6.0274563
+        - 6.0274563
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        value: value
+      properties:
+        id:
+          format: uuid
+          type: string
+        visible:
+          type: boolean
+        flags:
+          format: int32
+          type: integer
+        parentId:
+          format: uuid
+          type: string
+        type:
+          enum:
+          - Base
+          - Blob
+          - Json
+          - Set
+          - Text
+          - Vector
+          - Xml
+          type: string
+        userName:
+          type: string
+        postAt:
+          format: date-time
+          type: string
+        refreshAt:
+          format: date-time
+          type: string
+        lastChangedTime:
+          format: date-time
+          type: string
+        enabled:
+          type: boolean
+        title:
+          type: string
+        aHref:
+          type: string
+        blob:
+          format: byte
+          type: string
+        json:
+          additionalProperties:
+            type: string
+        texts:
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+        fileName:
+          type: string
+        html:
+          type: string
+        link:
+          type: string
+        markdown:
+          type: string
+        value:
+          type: string
+        vector:
+          items:
+            format: float
+            type: number
+          type: array
+        xml:
+          type: string
+        tags:
+          items:
+            type: string
+          type: array
+    Link:
+      example:
+        hreflang: hreflang
+        templated: true
+        profile: profile
+        name: name
+        href: href
+        title: title
+        type: type
+        deprecation: deprecation
+      properties:
+        href:
+          type: string
+        hreflang:
+          type: string
+        title:
+          type: string
+        type:
+          type: string
+        deprecation:
+          type: string
+        profile:
+          type: string
+        name:
+          type: string
+        templated:
+          type: boolean
+    Links:
+      additionalProperties:
+        $ref: "#/components/schemas/Link"
+    PagedModelEntityModelResourceRecordView__embedded:
+      example:
+        resourceRecordViewList:
+        - fileName: fileName
+          visible: true
+          postAt: 2000-01-23T04:56:07.000+00:00
+          _links:
+            key:
+              hreflang: hreflang
+              templated: true
+              profile: profile
+              name: name
+              href: href
+              title: title
+              type: type
+              deprecation: deprecation
+          flags: 0
+          link: link
+          type: Base
+          userName: userName
+          title: title
+          parentId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          enabled: true
+          tags:
+          - tags
+          - tags
+          lastChangedTime: 2000-01-23T04:56:07.000+00:00
+          blob: blob
+          texts:
+          - texts
+          - texts
+          aHref: aHref
+          xml: xml
+          refreshAt: 2000-01-23T04:56:07.000+00:00
+          markdown: markdown
+          json:
+            key: json
+          html: html
+          vector:
+          - 6.0274563
+          - 6.0274563
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          value: value
+        - fileName: fileName
+          visible: true
+          postAt: 2000-01-23T04:56:07.000+00:00
+          _links:
+            key:
+              hreflang: hreflang
+              templated: true
+              profile: profile
+              name: name
+              href: href
+              title: title
+              type: type
+              deprecation: deprecation
+          flags: 0
+          link: link
+          type: Base
+          userName: userName
+          title: title
+          parentId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          enabled: true
+          tags:
+          - tags
+          - tags
+          lastChangedTime: 2000-01-23T04:56:07.000+00:00
+          blob: blob
+          texts:
+          - texts
+          - texts
+          aHref: aHref
+          xml: xml
+          refreshAt: 2000-01-23T04:56:07.000+00:00
+          markdown: markdown
+          json:
+            key: json
+          html: html
+          vector:
+          - 6.0274563
+          - 6.0274563
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          value: value
+      properties:
+        resourceRecordViewList:
+          items:
+            $ref: "#/components/schemas/EntityModelResourceRecordView"
+          type: array
+

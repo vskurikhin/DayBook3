@@ -1,0 +1,120 @@
+import org.apache.tools.ant.filters.ReplaceTokens
+
+import java.util.regex.Matcher
+import java.util.regex.Pattern
+
+static String toCamelCase(String text, boolean capitalized = false) {
+    text = text.replaceAll("(_)([A-Za-z0-9])", { Object[] it -> it[2].toUpperCase() })
+    return capitalized ? text.capitalize() : text
+}
+
+static String toSnakeCase(String text) {
+    text.replaceAll(/([A-Z])/, /_$1/).toLowerCase().replaceAll(/^_/, '')
+}
+
+static String getLastVersion(String content) {
+    String regex = "--changeset[\\s]+[^\\s]+:(\\d+)"
+    Matcher matcher = Pattern.compile(regex).matcher(content)
+
+    while (matcher.find()) {
+        return Integer.valueOf(matcher.group(1)) + 4
+    }
+    return "1"
+}
+
+// номер changeset всегда должен быть уникальным!!!
+static def getLastVersionFile(String folder) {
+    def files = new File(folder).listFiles()?.sort { it.getName() }
+    def file = files.size() > 0 ? files?.last() : null
+    if (Objects.isNull(file)) {
+        return "1"
+    }
+    String fileContents = file.getText('UTF-8')
+    return getLastVersion(fileContents)
+}
+
+static String getChangeSetFileName(String scriptName, String version) {
+    def date = new Date()
+    def formattedDate = date.format("yyyy_MM_dd")
+    def formattedTime = date.format("HH_mm_ss")
+    return "${version}_date_${formattedDate}_time_${formattedTime}_${scriptName}.sql"
+}
+
+def getProjectProperty(key, defaultValue) {
+    return project.getProperties().get(key) ?: defaultValue
+}
+
+@SuppressWarnings('GrMethodMayBeStatic')
+private String getChangeSetFolderPath(String projectDir) {
+    def changeset = "${getProperty("src.main.resources")}/${getProperty("changeset")}".toString()
+    return null == projectDir || projectDir.isEmpty()
+            ? changeset
+            : "${projectDir}/${changeset}".toString()
+}
+
+tasks.register('generate') {
+    doLast {
+        def task = this.getProjectProperty('task', 'issue_1')
+        def desc = this.getProjectProperty('desc', 'migration')
+        def scriptName = "${task}_${desc}"
+        def folderPath = getChangeSetFolderPath(project.projectDir.toString())
+
+        def version = getLastVersionFile(folderPath + "/")
+        def fileName = getChangeSetFileName(scriptName, version)
+        def filePath = "${folderPath}/${fileName}"
+        def logicalFilePath = "${getChangeSetFolderPath()}/${fileName}"
+
+        def changeSetAuthor = java.util.Optional
+                .ofNullable(System.getProperty("username"))
+                .orElse(System.getenv("USER"))
+
+        List<String> sample = [
+                '--liquibase formatted sql', '--', '', '--',
+                "--changeset ${changeSetAuthor}:${version} endDelimiter:; failOnError:true logicalFilePath:${logicalFilePath}",
+                '--', '', '--',
+                '-- << COMMAND HERE >>', '--', '',
+                '--', '--rollback',
+                ''] as String[]
+        // create the file and write text to it.
+        def file = new File(filePath)
+        file.text = sample.join("\n")
+        println "File created ${file.getAbsolutePath()}"
+    }
+}
+
+private void genSql(File template, prefix = 'create') {
+    def templateFileName = template.toPath().fileName.toString()
+    def task = this.getProjectProperty('task', 'issue_1')
+    def name = this.getProjectProperty('table', 'value_type').toString()
+    def schema = this.getProjectProperty('schema', 'dictionary').toString()
+    def key = this.getProjectProperty('key', 'key').toString()
+
+    def desc = prefix + '_' + name
+    def scriptName = "${task}_${desc}"
+    def folderPath = getChangeSetFolderPath(project.projectDir.toString())
+    def version = getLastVersionFile(folderPath + "/")
+    def fileName = getChangeSetFileName(scriptName, version)
+    def logicalFilePath = "${getChangeSetFolderPath()}/${fileName}"
+
+    def changeSetAuthor = java.util.Optional
+            .ofNullable(System.getProperty("username"))
+            .orElse(System.getenv("USER"))
+
+    copy {
+        from template
+        filter ReplaceTokens, tokens: [
+                schema         : schema,
+                table          : name,
+                key            : key,
+                value          : 'value',
+                version        : version,
+                rnd            : (1000 + new Random().nextInt(8999)).toString(),
+                logicalFilePath: logicalFilePath.toString(),
+                changeSetAuthor: changeSetAuthor
+        ]
+        into folderPath
+        rename { filename ->
+            filename.replace templateFileName, fileName
+        }
+    }
+}
