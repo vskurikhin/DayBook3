@@ -1,3 +1,0 @@
-include 'lib-daybook'
-project(':lib-daybook').projectDir = new File('../lib-daybook')
-rootProject.name = 'DayBook-3-api-gateway'
