@@ -1,0 +1,517 @@
+basePath: /auth/api
+definitions:
+  APIResponse:
+    properties:
+      success:
+        type: boolean
+    type: object
+  CreateUser:
+    properties:
+      confirm_password:
+        type: string
+      email:
+        type: string
+      name:
+        type: string
+      password:
+        type: string
+      user_name:
+        type: string
+    type: object
+  Empty:
+    type: object
+  Login:
+    properties:
+      password:
+        type: string
+      user_name:
+        type: string
+    type: object
+  Token:
+    properties:
+      expires_at:
+        type: string
+      token:
+        type: string
+      user:
+        $ref: '#/definitions/User'
+    type: object
+  User:
+    properties:
+      email:
+        type: string
+      flags:
+        type: integer
+      id:
+        type: string
+      name:
+        type: string
+      user_name:
+        type: string
+      visible:
+        type: boolean
+    type: object
+  UserHasRoles:
+    properties:
+      flags:
+        type: integer
+      roles:
+        items:
+          type: string
+        type: array
+      user_name:
+        type: string
+      visible:
+        type: boolean
+    type: object
+host: localhost:64148
+info:
+  contact: {}
+  description: API for authentication in DayBook
+  title: DayBook Auth API
+  version: 0.0.1
+paths:
+  /v1/ok:
+    get:
+      deprecated: true
+      description: Ok - Описание (v1)
+      operationId: ResourceV1-ok
+      produces:
+      - text/plain
+      responses:
+        "200":
+          description: успешно!
+          schema:
+            type: string
+      summary: Ok Краткое содержание
+      tags:
+      - ok
+  /v2/auth:
+    post:
+      consumes:
+      - application/json
+      description: Authenticates user using login and password. Returns access token
+        and sets refresh token cookie.
+      parameters:
+      - description: User credentials
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/Login'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/APIResponse'
+            - properties:
+                data:
+                  $ref: '#/definitions/Token'
+              type: object
+        "400":
+          description: bad request
+          schema:
+            allOf:
+            - $ref: '#/definitions/APIResponse'
+            - properties:
+                error:
+                  type: string
+                success:
+                  type: boolean
+              type: object
+        "500":
+          description: 'server error ''success'': false'
+          schema:
+            allOf:
+            - $ref: '#/definitions/APIResponse'
+            - properties:
+                error:
+                  type: string
+                success:
+                  type: boolean
+              type: object
+        "503":
+          description: service unavailable
+          schema:
+            allOf:
+            - $ref: '#/definitions/APIResponse'
+            - properties:
+                error:
+                  type: string
+                success:
+                  type: boolean
+              type: object
+        "504":
+          description: gateway timeout
+          schema:
+            allOf:
+            - $ref: '#/definitions/APIResponse'
+            - properties:
+                error:
+                  type: string
+                success:
+                  type: boolean
+              type: object
+      summary: Authenticate user
+      tags:
+      - auth
+  /v2/logout:
+    post:
+      description: Invalidates user session. Requires JWT authentication.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/APIResponse'
+        "401":
+          description: unauthorized
+          schema:
+            type: string
+        "500":
+          description: 'server error ''success'': false'
+          schema:
+            allOf:
+            - $ref: '#/definitions/APIResponse'
+            - properties:
+                error:
+                  type: string
+                success:
+                  type: boolean
+              type: object
+        "503":
+          description: service unavailable
+          schema:
+            allOf:
+            - $ref: '#/definitions/APIResponse'
+            - properties:
+                error:
+                  type: string
+                success:
+                  type: boolean
+              type: object
+        "504":
+          description: gateway timeout
+          schema:
+            allOf:
+            - $ref: '#/definitions/APIResponse'
+            - properties:
+                error:
+                  type: string
+                success:
+                  type: boolean
+              type: object
+      security:
+      - BearerAuth: []
+      summary: Logout user
+      tags:
+      - auth
+  /v2/ok:
+    get:
+      description: Returns service status.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/APIResponse'
+            - properties:
+                data:
+                  items:
+                    additionalProperties:
+                      type: string
+                    type: object
+                  type: array
+              type: object
+      summary: Health check
+      tags:
+      - health
+  /v2/refresh:
+    post:
+      consumes:
+      - application/json
+      description: Refreshes access token using refresh token from cookie. Sets new
+        refresh cookie.
+      parameters:
+      - description: User credentials by cookie string
+        in: body
+        name: request
+        schema:
+          $ref: '#/definitions/Empty'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/APIResponse'
+            - properties:
+                data:
+                  $ref: '#/definitions/Token'
+              type: object
+        "206":
+          description: Partial Content
+        "400":
+          description: bad request
+          schema:
+            allOf:
+            - $ref: '#/definitions/APIResponse'
+            - properties:
+                error:
+                  type: string
+                success:
+                  type: boolean
+              type: object
+        "401":
+          description: unauthorized
+          schema:
+            type: string
+        "500":
+          description: 'server error ''success'': false'
+          schema:
+            allOf:
+            - $ref: '#/definitions/APIResponse'
+            - properties:
+                error:
+                  type: string
+                success:
+                  type: boolean
+              type: object
+        "503":
+          description: service unavailable
+          schema:
+            allOf:
+            - $ref: '#/definitions/APIResponse'
+            - properties:
+                error:
+                  type: string
+                success:
+                  type: boolean
+              type: object
+        "504":
+          description: gateway timeout
+          schema:
+            allOf:
+            - $ref: '#/definitions/APIResponse'
+            - properties:
+                error:
+                  type: string
+                success:
+                  type: boolean
+              type: object
+      summary: Refresh tokens
+      tags:
+      - auth
+  /v2/register:
+    post:
+      consumes:
+      - application/json
+      description: Registers a new user and returns access token with refresh cookie.
+      parameters:
+      - description: User registration data
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/CreateUser'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/APIResponse'
+            - properties:
+                data:
+                  $ref: '#/definitions/Token'
+              type: object
+        "400":
+          description: bad request
+          schema:
+            allOf:
+            - $ref: '#/definitions/APIResponse'
+            - properties:
+                error:
+                  type: string
+                success:
+                  type: boolean
+              type: object
+        "409":
+          description: status conflict
+          schema:
+            allOf:
+            - $ref: '#/definitions/APIResponse'
+            - properties:
+                error:
+                  type: string
+                success:
+                  type: boolean
+              type: object
+        "500":
+          description: 'server error ''success'': false'
+          schema:
+            allOf:
+            - $ref: '#/definitions/APIResponse'
+            - properties:
+                error:
+                  type: string
+                success:
+                  type: boolean
+              type: object
+        "503":
+          description: service unavailable
+          schema:
+            allOf:
+            - $ref: '#/definitions/APIResponse'
+            - properties:
+                error:
+                  type: string
+                success:
+                  type: boolean
+              type: object
+        "504":
+          description: gateway timeout
+          schema:
+            allOf:
+            - $ref: '#/definitions/APIResponse'
+            - properties:
+                error:
+                  type: string
+                success:
+                  type: boolean
+              type: object
+      summary: Register user
+      tags:
+      - auth
+  /v2/session/roles:
+    get:
+      description: Invalidates user session. Requires JWT authentication.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/APIResponse'
+            - properties:
+                data:
+                  $ref: '#/definitions/UserHasRoles'
+              type: object
+        "401":
+          description: unauthorized
+          schema:
+            type: string
+        "500":
+          description: 'server error ''success'': false'
+          schema:
+            allOf:
+            - $ref: '#/definitions/APIResponse'
+            - properties:
+                error:
+                  type: string
+                success:
+                  type: boolean
+              type: object
+        "503":
+          description: service unavailable
+          schema:
+            allOf:
+            - $ref: '#/definitions/APIResponse'
+            - properties:
+                error:
+                  type: string
+                success:
+                  type: boolean
+              type: object
+        "504":
+          description: gateway timeout
+          schema:
+            allOf:
+            - $ref: '#/definitions/APIResponse'
+            - properties:
+                error:
+                  type: string
+                success:
+                  type: boolean
+              type: object
+      security:
+      - BearerAuth: []
+      summary: for user get roles in session
+      tags:
+      - session
+  /v2/user/list:
+    get:
+      description: Returns list of users. Requires JWT authentication.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/APIResponse'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/User'
+                  type: array
+              type: object
+        "401":
+          description: unauthorized
+          schema:
+            type: string
+        "500":
+          description: 'server error ''success'': false'
+          schema:
+            allOf:
+            - $ref: '#/definitions/APIResponse'
+            - properties:
+                error:
+                  type: string
+                success:
+                  type: boolean
+              type: object
+        "503":
+          description: service unavailable
+          schema:
+            allOf:
+            - $ref: '#/definitions/APIResponse'
+            - properties:
+                error:
+                  type: string
+                success:
+                  type: boolean
+              type: object
+        "504":
+          description: gateway timeout
+          schema:
+            allOf:
+            - $ref: '#/definitions/APIResponse'
+            - properties:
+                error:
+                  type: string
+                success:
+                  type: boolean
+              type: object
+      security:
+      - BearerAuth: []
+      summary: Get users list
+      tags:
+      - users
+schemes:
+- http
+securityDefinitions:
+  BearerAuth:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"

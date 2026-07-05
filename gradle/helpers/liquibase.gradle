@@ -1,0 +1,19 @@
+def db_url = getEnv('DBURL', DATABASE_URL)
+def db_url_public = db_url + "?currentSchema=${getProperty("default.schemaName")}"
+def db_username = getEnv('DBUSER', DATABASE_USERNAME)
+def db_password = getEnv('DBPASS', DATABASE_PASSWORD)
+def run_list = project.properties['runList'] ?: 'db'
+
+liquibase {
+    activities {
+        db {
+            changelogFile "${getProperty("module.src.main.resources")}/${getProperty("changelog")}"
+            url db_url_public
+            defaultSchemaName "${getProperty("default.schemaName")}"
+            username db_username
+            password db_password
+            classpath "$rootDir"
+        }
+    }
+    runList = run_list
+}

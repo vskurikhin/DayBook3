@@ -1,0 +1,14 @@
+{
+  "name": "quinoa-starter",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --base=/quinoa",
+    "build": "vite build --base=/quinoa",
+    "preview": "vite preview --base=/quinoa"
+  },
+  "devDependencies": {
+    "vite": "^6.4.1"
+  }
+}

@@ -1,0 +1,15 @@
+address: 127.0.0.1:65080
+dbhost: 127.0.0.1
+dbname: db
+dboptions: application_name=auth&search_path=auth
+dbpassword: password
+dbport: 65432
+dbuser: dbuser
+db_pool_max_conns: 4
+db_pool_min_conns: 0
+db_pool_max_conn_lifetime: 1h
+db_pool_max_conn_idle_time: 30s
+db_pool_health_check_period: 1m
+debug: false
+insecure_skip_verify: false
+verbose: false

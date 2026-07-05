@@ -1,0 +1,1393 @@
+---
+openapi: 3.1.0
+info:
+  description: API Documentation
+  title: DayBook 3 API
+  version: "1.0"
+components:
+  responses:
+    "200OK":
+      description: OK
+    "201Created":
+      description: Created
+    "204NoCont":
+      description: No Content
+    "500Error":
+      description: Internal Server Error
+  schemas:
+    NewBlobRecord:
+      type: object
+      required:
+      - blob
+      - postAt
+      properties:
+        visible:
+          type: boolean
+        flags:
+          type: integer
+          format: int32
+        parentId:
+          $ref: "#/components/schemas/UUID"
+        title:
+          type: string
+          maxLength: 4096
+        aHref:
+          type: string
+          maxLength: 4096
+        blob:
+          type: string
+          format: binary
+        postAt:
+          $ref: "#/components/schemas/OffsetDateTime"
+        tags:
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+    NewJsonRecord:
+      type: object
+      required:
+      - json
+      - postAt
+      properties:
+        visible:
+          type: boolean
+        flags:
+          type: integer
+          format: int32
+        parentId:
+          $ref: "#/components/schemas/UUID"
+        title:
+          type: string
+          maxLength: 4096
+        aHref:
+          type: string
+          maxLength: 4096
+        json:
+          type: object
+          additionalProperties:
+            type: string
+        postAt:
+          $ref: "#/components/schemas/OffsetDateTime"
+        tags:
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+    NewMarkdownRecord:
+      type: object
+      required:
+      - markdown
+      - postAt
+      properties:
+        visible:
+          type: boolean
+        flags:
+          type: integer
+          format: int32
+        parentId:
+          $ref: "#/components/schemas/UUID"
+        title:
+          type: string
+          maxLength: 4096
+        aHref:
+          type: string
+          maxLength: 4096
+        markdown:
+          type: string
+          maxLength: 65535
+        postAt:
+          $ref: "#/components/schemas/OffsetDateTime"
+        tags:
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+    NewSetRecord:
+      type: object
+      required:
+      - texts
+      - postAt
+      properties:
+        visible:
+          type: boolean
+        flags:
+          type: integer
+          format: int32
+        parentId:
+          $ref: "#/components/schemas/UUID"
+        title:
+          type: string
+          maxLength: 4096
+        aHref:
+          type: string
+          maxLength: 4096
+        texts:
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+        postAt:
+          $ref: "#/components/schemas/OffsetDateTime"
+        tags:
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+    NewValueRecord:
+      type: object
+      required:
+      - value
+      - postAt
+      properties:
+        visible:
+          type: boolean
+        flags:
+          type: integer
+          format: int32
+        parentId:
+          $ref: "#/components/schemas/UUID"
+        title:
+          type: string
+          maxLength: 4096
+        aHref:
+          type: string
+          maxLength: 4096
+        value:
+          type: string
+          maxLength: 4096
+        postAt:
+          $ref: "#/components/schemas/OffsetDateTime"
+        tags:
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+    NewVectorRecord:
+      type: object
+      required:
+      - vector
+      - postAt
+      properties:
+        visible:
+          type: boolean
+        flags:
+          type: integer
+          format: int32
+        parentId:
+          $ref: "#/components/schemas/UUID"
+        title:
+          type: string
+          maxLength: 4096
+        aHref:
+          type: string
+          maxLength: 4096
+        vector:
+          type: array
+          maxItems: 1024
+          minItems: 1024
+          items:
+            type: number
+            format: float
+        postAt:
+          $ref: "#/components/schemas/OffsetDateTime"
+        tags:
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+    NewXmlRecord:
+      type: object
+      required:
+      - xml
+      - postAt
+      properties:
+        visible:
+          type: boolean
+        flags:
+          type: integer
+          format: int32
+        parentId:
+          $ref: "#/components/schemas/UUID"
+        title:
+          type: string
+          maxLength: 4096
+        aHref:
+          type: string
+          maxLength: 4096
+        xml:
+          type: string
+          maxLength: 10485760
+        postAt:
+          $ref: "#/components/schemas/OffsetDateTime"
+        tags:
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+    OffsetDateTime:
+      type: string
+      format: date-time
+      examples:
+      - 2022-03-10T12:15:50-04:00
+    RecordData:
+      type: object
+      properties:
+        id:
+          $ref: "#/components/schemas/UUID"
+        parentId:
+          $ref: "#/components/schemas/UUID"
+        type:
+          $ref: "#/components/schemas/RecordType"
+        postAt:
+          $ref: "#/components/schemas/OffsetDateTime"
+        refreshAt:
+          $ref: "#/components/schemas/OffsetDateTime"
+        visible:
+          type: boolean
+        flags:
+          type: integer
+          format: int32
+        title:
+          type: string
+        aHref:
+          type: string
+        blob:
+          type: string
+          format: binary
+        json:
+          type: object
+          additionalProperties:
+            type: string
+        texts:
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+        fileName:
+          type: string
+        html:
+          type: string
+        link:
+          type: string
+        markdown:
+          type: string
+        value:
+          type: string
+        vector:
+          type: array
+          items:
+            type: number
+            format: float
+        xml:
+          type: string
+        tags:
+          type: array
+          items:
+            type: string
+    RecordDataPage:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: "#/components/schemas/RecordData"
+        pageCount:
+          type: integer
+          format: int64
+        pageIndex:
+          type: integer
+          format: int64
+        pageSize:
+          type: integer
+          format: int64
+        totalRecords:
+          type: integer
+          format: int64
+    RecordType:
+      type: string
+      enum:
+      - Base
+      - Blob
+      - Json
+      - Set
+      - Text
+      - Vector
+      - Xml
+    ResourceBlobRecord:
+      type: object
+      properties:
+        id:
+          $ref: "#/components/schemas/UUID"
+        visible:
+          type: boolean
+        flags:
+          type: integer
+          format: int32
+        parentId:
+          $ref: "#/components/schemas/UUID"
+        title:
+          type: string
+        aHref:
+          type: string
+        blob:
+          type: string
+          format: binary
+        postAt:
+          $ref: "#/components/schemas/OffsetDateTime"
+        refreshAt:
+          $ref: "#/components/schemas/OffsetDateTime"
+        tags:
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+    ResourceJsonRecord:
+      type: object
+      properties:
+        id:
+          $ref: "#/components/schemas/UUID"
+        visible:
+          type: boolean
+        flags:
+          type: integer
+          format: int32
+        parentId:
+          $ref: "#/components/schemas/UUID"
+        title:
+          type: string
+        aHref:
+          type: string
+        json:
+          type: object
+          additionalProperties:
+            type: string
+        postAt:
+          $ref: "#/components/schemas/OffsetDateTime"
+        refreshAt:
+          $ref: "#/components/schemas/OffsetDateTime"
+        tags:
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+    ResourceMarkdownRecord:
+      type: object
+      properties:
+        id:
+          $ref: "#/components/schemas/UUID"
+        visible:
+          type: boolean
+        flags:
+          type: integer
+          format: int32
+        parentId:
+          $ref: "#/components/schemas/UUID"
+        title:
+          type: string
+        aHref:
+          type: string
+        markdown:
+          type: string
+        postAt:
+          $ref: "#/components/schemas/OffsetDateTime"
+        refreshAt:
+          $ref: "#/components/schemas/OffsetDateTime"
+        tags:
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+    ResourceSetRecord:
+      type: object
+      properties:
+        id:
+          $ref: "#/components/schemas/UUID"
+        visible:
+          type: boolean
+        flags:
+          type: integer
+          format: int32
+        parentId:
+          $ref: "#/components/schemas/UUID"
+        title:
+          type: string
+        aHref:
+          type: string
+        texts:
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+        postAt:
+          $ref: "#/components/schemas/OffsetDateTime"
+        refreshAt:
+          $ref: "#/components/schemas/OffsetDateTime"
+        tags:
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+    ResourceValueRecord:
+      type: object
+      properties:
+        id:
+          $ref: "#/components/schemas/UUID"
+        visible:
+          type: boolean
+        flags:
+          type: integer
+          format: int32
+        parentId:
+          $ref: "#/components/schemas/UUID"
+        title:
+          type: string
+        aHref:
+          type: string
+        value:
+          type: string
+        postAt:
+          $ref: "#/components/schemas/OffsetDateTime"
+        refreshAt:
+          $ref: "#/components/schemas/OffsetDateTime"
+        tags:
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+    ResourceVectorRecord:
+      type: object
+      properties:
+        id:
+          $ref: "#/components/schemas/UUID"
+        visible:
+          type: boolean
+        flags:
+          type: integer
+          format: int32
+        parentId:
+          $ref: "#/components/schemas/UUID"
+        title:
+          type: string
+        aHref:
+          type: string
+        vector:
+          type: array
+          items:
+            type: number
+            format: float
+        postAt:
+          $ref: "#/components/schemas/OffsetDateTime"
+        refreshAt:
+          $ref: "#/components/schemas/OffsetDateTime"
+        tags:
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+    ResourceXmlRecord:
+      type: object
+      properties:
+        id:
+          $ref: "#/components/schemas/UUID"
+        visible:
+          type: boolean
+        flags:
+          type: integer
+          format: int32
+        parentId:
+          $ref: "#/components/schemas/UUID"
+        title:
+          type: string
+        aHref:
+          type: string
+        xml:
+          type: string
+        postAt:
+          $ref: "#/components/schemas/OffsetDateTime"
+        refreshAt:
+          $ref: "#/components/schemas/OffsetDateTime"
+        tags:
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+    UUID:
+      type: string
+      format: uuid
+      pattern: "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}"
+    UpdateBlobRecord:
+      type: object
+      required:
+      - id
+      - parentId
+      - refreshAt
+      properties:
+        id:
+          $ref: "#/components/schemas/UUID"
+        parentId:
+          $ref: "#/components/schemas/UUID"
+        title:
+          type: string
+          maxLength: 4096
+        aHref:
+          type: string
+          maxLength: 4096
+        blob:
+          type: string
+          format: binary
+        postAt:
+          $ref: "#/components/schemas/OffsetDateTime"
+        refreshAt:
+          $ref: "#/components/schemas/OffsetDateTime"
+        visible:
+          type: boolean
+        flags:
+          type: integer
+          format: int32
+        tags:
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+    UpdateJsonRecord:
+      type: object
+      required:
+      - id
+      - parentId
+      - json
+      - refreshAt
+      properties:
+        id:
+          $ref: "#/components/schemas/UUID"
+        parentId:
+          $ref: "#/components/schemas/UUID"
+        title:
+          type: string
+          maxLength: 4096
+        aHref:
+          type: string
+          maxLength: 4096
+        json:
+          type: object
+          additionalProperties:
+            type: string
+        postAt:
+          $ref: "#/components/schemas/OffsetDateTime"
+        refreshAt:
+          $ref: "#/components/schemas/OffsetDateTime"
+        visible:
+          type: boolean
+        flags:
+          type: integer
+          format: int32
+        tags:
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+    UpdateMarkdownRecord:
+      type: object
+      required:
+      - id
+      - parentId
+      - markdown
+      - refreshAt
+      properties:
+        id:
+          $ref: "#/components/schemas/UUID"
+        parentId:
+          $ref: "#/components/schemas/UUID"
+        title:
+          type: string
+          maxLength: 4096
+        aHref:
+          type: string
+          maxLength: 4096
+        markdown:
+          type: string
+          maxLength: 65535
+        postAt:
+          $ref: "#/components/schemas/OffsetDateTime"
+        refreshAt:
+          $ref: "#/components/schemas/OffsetDateTime"
+        visible:
+          type: boolean
+        flags:
+          type: integer
+          format: int32
+        tags:
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+    UpdateSetRecord:
+      type: object
+      required:
+      - id
+      - parentId
+      - texts
+      - refreshAt
+      properties:
+        id:
+          $ref: "#/components/schemas/UUID"
+        parentId:
+          $ref: "#/components/schemas/UUID"
+        title:
+          type: string
+          maxLength: 4096
+        aHref:
+          type: string
+          maxLength: 4096
+        texts:
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+        postAt:
+          $ref: "#/components/schemas/OffsetDateTime"
+        refreshAt:
+          $ref: "#/components/schemas/OffsetDateTime"
+        visible:
+          type: boolean
+        flags:
+          type: integer
+          format: int32
+        tags:
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+    UpdateValueRecord:
+      type: object
+      required:
+      - id
+      - parentId
+      - value
+      - refreshAt
+      properties:
+        id:
+          $ref: "#/components/schemas/UUID"
+        parentId:
+          $ref: "#/components/schemas/UUID"
+        title:
+          type: string
+          maxLength: 4096
+        aHref:
+          type: string
+          maxLength: 4096
+        value:
+          type: string
+          maxLength: 4096
+        postAt:
+          $ref: "#/components/schemas/OffsetDateTime"
+        refreshAt:
+          $ref: "#/components/schemas/OffsetDateTime"
+        visible:
+          type: boolean
+        flags:
+          type: integer
+          format: int32
+        tags:
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+    UpdateVectorRecord:
+      type: object
+      required:
+      - id
+      - parentId
+      - vector
+      - refreshAt
+      properties:
+        id:
+          $ref: "#/components/schemas/UUID"
+        parentId:
+          $ref: "#/components/schemas/UUID"
+        title:
+          type: string
+          maxLength: 4096
+        aHref:
+          type: string
+          maxLength: 4096
+        vector:
+          type: array
+          maxItems: 1024
+          minItems: 1024
+          items:
+            type: number
+            format: float
+        postAt:
+          $ref: "#/components/schemas/OffsetDateTime"
+        refreshAt:
+          $ref: "#/components/schemas/OffsetDateTime"
+        visible:
+          type: boolean
+        flags:
+          type: integer
+          format: int32
+        tags:
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+    UpdateXmlRecord:
+      type: object
+      required:
+      - id
+      - parentId
+      - xml
+      - refreshAt
+      properties:
+        id:
+          $ref: "#/components/schemas/UUID"
+        parentId:
+          $ref: "#/components/schemas/UUID"
+        title:
+          type: string
+          maxLength: 4096
+        aHref:
+          type: string
+          maxLength: 4096
+        xml:
+          type: string
+          maxLength: 10485760
+        postAt:
+          $ref: "#/components/schemas/OffsetDateTime"
+        refreshAt:
+          $ref: "#/components/schemas/OffsetDateTime"
+        visible:
+          type: boolean
+        flags:
+          type: integer
+          format: int32
+        tags:
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+  securitySchemes:
+    SecurityScheme:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Authentication
+paths:
+  /api/v2/record/blob:
+    put:
+      summary: Update BLOB record
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateBlobRecord"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResourceBlobRecord"
+        "500":
+          $ref: "#/components/responses/500Error"
+        "401":
+          description: Not Authorized
+        "403":
+          description: Not Allowed
+        "400":
+          description: Bad Request
+      tags:
+      - Blob Record Resource
+      security:
+      - SecurityScheme:
+        - USER
+    post:
+      summary: Create BLOB record
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NewBlobRecord"
+        required: true
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResourceBlobRecord"
+        "500":
+          $ref: "#/components/responses/500Error"
+        "401":
+          description: Not Authorized
+        "403":
+          description: Not Allowed
+        "400":
+          description: Bad Request
+      tags:
+      - Blob Record Resource
+      security:
+      - SecurityScheme:
+        - USER
+  /api/v2/record/blob/{id}:
+    delete:
+      summary: Delete BLOB record
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          $ref: "#/components/schemas/UUID"
+      responses:
+        "204":
+          $ref: "#/components/responses/204NoCont"
+        "500":
+          $ref: "#/components/responses/500Error"
+        "401":
+          description: Not Authorized
+        "403":
+          description: Not Allowed
+      tags:
+      - Blob Record Resource
+      security:
+      - SecurityScheme:
+        - USER
+  /api/v2/record/json:
+    put:
+      summary: Update JSON record
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateJsonRecord"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResourceJsonRecord"
+        "500":
+          $ref: "#/components/responses/500Error"
+        "401":
+          description: Not Authorized
+        "403":
+          description: Not Allowed
+        "400":
+          description: Bad Request
+      tags:
+      - Json Record Resource
+      security:
+      - SecurityScheme:
+        - USER
+    post:
+      summary: Create JSON record
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NewJsonRecord"
+        required: true
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResourceJsonRecord"
+        "500":
+          $ref: "#/components/responses/500Error"
+        "401":
+          description: Not Authorized
+        "403":
+          description: Not Allowed
+        "400":
+          description: Bad Request
+      tags:
+      - Json Record Resource
+      security:
+      - SecurityScheme:
+        - USER
+  /api/v2/record/json/{id}:
+    delete:
+      summary: Delete JSON record
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          $ref: "#/components/schemas/UUID"
+      responses:
+        "204":
+          $ref: "#/components/responses/204NoCont"
+        "500":
+          $ref: "#/components/responses/500Error"
+        "401":
+          description: Not Authorized
+        "403":
+          description: Not Allowed
+      tags:
+      - Json Record Resource
+      security:
+      - SecurityScheme:
+        - USER
+  /api/v2/record/markdown:
+    put:
+      summary: Update markdown record
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateMarkdownRecord"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResourceMarkdownRecord"
+        "500":
+          $ref: "#/components/responses/500Error"
+        "401":
+          description: Not Authorized
+        "403":
+          description: Not Allowed
+        "400":
+          description: Bad Request
+      tags:
+      - Markdown Record Resource
+      security:
+      - SecurityScheme:
+        - USER
+    post:
+      summary: Create markdown record
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NewMarkdownRecord"
+        required: true
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResourceMarkdownRecord"
+        "500":
+          $ref: "#/components/responses/500Error"
+        "401":
+          description: Not Authorized
+        "403":
+          description: Not Allowed
+        "400":
+          description: Bad Request
+      tags:
+      - Markdown Record Resource
+      security:
+      - SecurityScheme:
+        - USER
+  /api/v2/record/markdown/{id}:
+    delete:
+      summary: Delete markdown record
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          $ref: "#/components/schemas/UUID"
+      responses:
+        "204":
+          $ref: "#/components/responses/204NoCont"
+        "500":
+          $ref: "#/components/responses/500Error"
+        "401":
+          description: Not Authorized
+        "403":
+          description: Not Allowed
+      tags:
+      - Markdown Record Resource
+      security:
+      - SecurityScheme:
+        - USER
+  /api/v2/record/set:
+    put:
+      summary: Update BLOB record
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateSetRecord"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResourceSetRecord"
+        "500":
+          $ref: "#/components/responses/500Error"
+        "401":
+          description: Not Authorized
+        "403":
+          description: Not Allowed
+        "400":
+          description: Bad Request
+      tags:
+      - Set Record Resource
+      security:
+      - SecurityScheme:
+        - USER
+    post:
+      summary: Create BLOB record
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NewSetRecord"
+        required: true
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResourceSetRecord"
+        "500":
+          $ref: "#/components/responses/500Error"
+        "401":
+          description: Not Authorized
+        "403":
+          description: Not Allowed
+        "400":
+          description: Bad Request
+      tags:
+      - Set Record Resource
+      security:
+      - SecurityScheme:
+        - USER
+  /api/v2/record/set/{id}:
+    delete:
+      summary: Delete BLOB record
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          $ref: "#/components/schemas/UUID"
+      responses:
+        "204":
+          description: No Content
+        "500":
+          $ref: "#/components/responses/500Error"
+        "401":
+          description: Not Authorized
+        "403":
+          description: Not Allowed
+      tags:
+      - Set Record Resource
+      security:
+      - SecurityScheme:
+        - USER
+  /api/v2/record/value:
+    put:
+      summary: Update BLOB record
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateValueRecord"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResourceValueRecord"
+        "500":
+          $ref: "#/components/responses/500Error"
+        "401":
+          description: Not Authorized
+        "403":
+          description: Not Allowed
+        "400":
+          description: Bad Request
+      tags:
+      - Value Record Resource
+      security:
+      - SecurityScheme:
+        - USER
+    post:
+      summary: Create BLOB record
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NewValueRecord"
+        required: true
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResourceValueRecord"
+        "500":
+          $ref: "#/components/responses/500Error"
+        "401":
+          description: Not Authorized
+        "403":
+          description: Not Allowed
+        "400":
+          description: Bad Request
+      tags:
+      - Value Record Resource
+      security:
+      - SecurityScheme:
+        - USER
+  /api/v2/record/value/{id}:
+    delete:
+      summary: Delete BLOB record
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          $ref: "#/components/schemas/UUID"
+      responses:
+        "204":
+          description: No Content
+        "500":
+          $ref: "#/components/responses/500Error"
+        "401":
+          description: Not Authorized
+        "403":
+          description: Not Allowed
+      tags:
+      - Value Record Resource
+      security:
+      - SecurityScheme:
+        - USER
+  /api/v2/record/vector:
+    put:
+      summary: Update BLOB record
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateVectorRecord"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResourceVectorRecord"
+        "500":
+          $ref: "#/components/responses/500Error"
+        "401":
+          description: Not Authorized
+        "403":
+          description: Not Allowed
+        "400":
+          description: Bad Request
+      tags:
+      - Vector Record Resource
+      security:
+      - SecurityScheme:
+        - USER
+    post:
+      summary: Create BLOB record
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NewVectorRecord"
+        required: true
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResourceVectorRecord"
+        "500":
+          $ref: "#/components/responses/500Error"
+        "401":
+          description: Not Authorized
+        "403":
+          description: Not Allowed
+        "400":
+          description: Bad Request
+      tags:
+      - Vector Record Resource
+      security:
+      - SecurityScheme:
+        - USER
+  /api/v2/record/vector/{id}:
+    delete:
+      summary: Delete BLOB record
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          $ref: "#/components/schemas/UUID"
+      responses:
+        "204":
+          description: No Content
+        "500":
+          $ref: "#/components/responses/500Error"
+        "401":
+          description: Not Authorized
+        "403":
+          description: Not Allowed
+      tags:
+      - Vector Record Resource
+      security:
+      - SecurityScheme:
+        - USER
+  /api/v2/record/xml:
+    put:
+      summary: Update BLOB record
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateXmlRecord"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResourceXmlRecord"
+        "500":
+          $ref: "#/components/responses/500Error"
+        "401":
+          description: Not Authorized
+        "403":
+          description: Not Allowed
+        "400":
+          description: Bad Request
+      tags:
+      - Xml Record Resource
+      security:
+      - SecurityScheme:
+        - USER
+    post:
+      summary: Create BLOB record
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NewXmlRecord"
+        required: true
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResourceXmlRecord"
+        "500":
+          $ref: "#/components/responses/500Error"
+        "401":
+          description: Not Authorized
+        "403":
+          description: Not Allowed
+        "400":
+          description: Bad Request
+      tags:
+      - Xml Record Resource
+      security:
+      - SecurityScheme:
+        - USER
+  /api/v2/record/xml/{id}:
+    delete:
+      summary: Delete BLOB record
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          $ref: "#/components/schemas/UUID"
+      responses:
+        "204":
+          description: No Content
+        "500":
+          $ref: "#/components/responses/500Error"
+        "401":
+          description: Not Authorized
+        "403":
+          description: Not Allowed
+      tags:
+      - Xml Record Resource
+      security:
+      - SecurityScheme:
+        - USER
+  /api/v2/records:
+    get:
+      summary: Get page with list of records
+      parameters:
+      - name: page
+        in: query
+        schema:
+          type: integer
+          format: int32
+      - name: size
+        in: query
+        schema:
+          type: integer
+          format: int8
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RecordDataPage"
+        "500":
+          $ref: "#/components/responses/500Error"
+      tags:
+      - Record Resource
+  /api/v2/records/{id}:
+    get:
+      summary: Retrieves a single record by its unique identifier
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          $ref: "#/components/schemas/UUID"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RecordData"
+        "500":
+          $ref: "#/components/responses/500Error"
+      tags:
+      - Record Resource
+  /health:
+    get:
+      responses:
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+      summary: Hello
+      tags:
+      - Health Check Resource

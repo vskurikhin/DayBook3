@@ -1,0 +1,83 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.5.14'
+	id 'io.spring.dependency-management' version '1.1.7'
+	id 'org.liquibase.gradle' version '2.2.0' // Use the latest version
+}
+
+description = 'Core project for Spring Boot'
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(21)
+	}
+}
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation project(':lib')
+	implementation 'org.springframework.boot:spring-boot-starter'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-hateoas'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	// implementation 'org.liquibase:liquibase-core' // TODO
+    //noinspection VulnerableLibrariesLocal
+    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.15'
+
+	implementation "io.jsonwebtoken:jjwt-api:${VERSION_IO_JSONWEBTOKEN}"
+	implementation "io.jsonwebtoken:jjwt-impl:${VERSION_IO_JSONWEBTOKEN}"
+	implementation "io.jsonwebtoken:jjwt-jackson:${VERSION_IO_JSONWEBTOKEN}"
+	implementation "org.mapstruct:mapstruct-processor:${VERSION_ORG_MAPSTRUCT_MAPSTRUCT}"
+	implementation "org.mapstruct:mapstruct:${VERSION_ORG_MAPSTRUCT_MAPSTRUCT}"
+	implementation "org.postgresql:postgresql:${VERSION_ORG_POSTGRESQL}"
+    implementation "org.mapstruct:mapstruct:${VERSION_ORG_MAPSTRUCT_MAPSTRUCT}"
+    implementation "org.hibernate.orm:hibernate-vector:${VERSION_HIBERNATE_VECTOR}"
+
+	compileOnly "org.projectlombok:lombok:${VERSION_LOMBOK}"
+
+	annotationProcessor "org.hibernate:hibernate-jpamodelgen:${VERSION_HIBERNATE_JPAMODELGEN}"
+	annotationProcessor "org.mapstruct:mapstruct-processor:${VERSION_ORG_MAPSTRUCT_MAPSTRUCT}"
+	annotationProcessor "org.projectlombok:lombok-mapstruct-binding:${VERSION_ORG_PROJECTLOMBOK_LOMBOK_MAPSTRUCT_BINDING}"
+	annotationProcessor "org.projectlombok:lombok:${VERSION_LOMBOK}"
+	annotationProcessor project(":spi-mapstruct")
+	annotationProcessor project(":lib")
+	runtimeOnly 'org.postgresql:postgresql'
+
+	// Liquibase runtime dependencies for the plugin
+	liquibaseRuntime "org.liquibase:liquibase-core:${VERSION_ORG_LIQUIBASE_LIQUIBASE_CORE}"
+	liquibaseRuntime "org.liquibase:liquibase-gradle-plugin:${VERSION_ORG_LIQUIBASE_LIQUIBASE_GRADLE_PLUGIN}"
+	liquibaseRuntime "org.postgresql:postgresql:${VERSION_ORG_POSTGRESQL}"
+	liquibaseRuntime "info.picocli:picocli:${VERSION_INFO_PICOCLI_PICOCLI}"
+
+	testImplementation "org.assertj:assertj-core:${VERSION_ORG_ASSERTJ_ASSERTJ_CORE}"
+	testImplementation 'org.liquibase:liquibase-core'
+    testImplementation "org.mockito:mockito-inline:${VERSION_ORG_MOCKITO_MOCKITO_INLINE}"
+
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.springframework.boot:spring-boot-testcontainers'
+    testImplementation 'org.springframework.security:spring-security-test'
+
+	testImplementation 'org.testcontainers:junit-jupiter'
+	testImplementation 'org.testcontainers:postgresql'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+apply from: "${rootDir}/gradle/helpers/generators.gradle"
+apply from: "${rootDir}/gradle/helpers/liquibase.gradle"
+
+test {
+	useJUnitPlatform()
+    jvmArgs += [
+       "-javaagent:${configurations.testRuntimeClasspath.find { it.name.contains('byte-buddy-agent') }}"
+   ]
+}

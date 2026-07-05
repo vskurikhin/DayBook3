@@ -1,0 +1,35 @@
+{
+  "name": "vite-styled-tailwindcss",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "axios": "^1.16.1",
+    "bootstrap": "^5.3.8",
+    "marked": "^18.0.4",
+    "primeicons": "^7.0.0",
+    "primereact": "^10.9.2",
+    "react": "^19.0.0",
+    "react-bootstrap": "^2.10.10",
+    "react-dom": "^19.0.0",
+    "react-hook-form": "^7.76.1",
+    "react-router-dom": "^7.16.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.0.11",
+    "@tailwindcss/vite": "^4.0.11",
+    "@types/node": "^22.13.5",
+    "@types/react": "19.0.10",
+    "@types/react-dom": "19.0.4",
+    "@vitejs/plugin-react": "^4.3.4",
+    "sass-embedded": "^1.100.0",
+    "tailwindcss": "^4.0.11",
+    "typescript": "5.8.2",
+    "vite": "^6.1.1"
+  }
+}

@@ -1,0 +1,88 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: auth-server-config
+data:
+  .auth-server.yaml: |
+    address: 0.0.0.0:8089
+    advisory_lock_sleep_duration: 60s
+    auth_cost: 11
+    dbhost: <change-me-db-host>
+    dbname: <change-me-db-name>
+    dboptions: application_name=auth&search_path=auth
+    dbpassword: <change-me-db-password>
+    dbport: <change-me-db-port>
+    dbuser: <change-me-db-username>
+    db_pool_max_conns: 16
+    db_pool_min_conns: 1
+    db_pool_max_conn_lifetime: 1h
+    db_pool_max_conn_idle_time: 47s
+    db_pool_health_check_period: 43s
+    debug: false
+    https: false
+    hostname: localhost
+    insecure_skip_verify: false
+    request_max_bytes: 1048576
+    scheduler_job_sleep_duration: 5s
+    valid_period_access_token: 7m0s
+    valid_period_refresh_token: 11h0m0s
+    verbose: false
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: auth-server-secret
+type: Opaque
+stringData:
+  AUTH_SERVER_JWT_HS256_SIGN_KEY: '<change-me-jwt-hs256-sign-key>'
+  TZ: 'Europe/Moscow'
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: auth-server
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: auth-server
+  template:
+    metadata:
+      labels:
+        app: auth-server
+    spec:
+      containers:
+        - name: auth-server
+          image: docker.io/vskurikhin/auth:latest
+          ports:
+            - containerPort: 8089
+          envFrom:
+            - secretRef:
+                name: auth-server-secret
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "256Mi"
+            limits:
+              cpu: "1000m"
+              memory: "512Mi"
+          volumeMounts:
+            - name: config
+              mountPath: /app/.auth-server.yaml
+              subPath: .auth-server.yaml
+      volumes:
+        - name: config
+          configMap:
+            name: auth-server-config
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: auth-server
+spec:
+  selector:
+    app: auth-server
+  ports:
+    - port: 8089
+      targetPort: 8089
+  type: ClusterIP

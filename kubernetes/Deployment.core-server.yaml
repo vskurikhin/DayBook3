@@ -1,0 +1,80 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: core-server-config
+data:
+  CORE_SERVER_HTTP_PORT: '8082'
+  CORE_SERVER_HTTP_HOST: '0.0.0.0'
+  CORE_SERVER_DB_URL: 'jdbc:postgresql://<change-me-db-host>:<change-me-db-port>/<change-me-db-name>?application_name=core'
+  JAVA_OPTS: '-XX:+UseContainerSupport -XX:MaxRAMPercentage=75.0 -Djava.security.egd=file:/dev/./urandom'
+  TZ: 'Europe/Moscow'
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: core-server-secret
+type: Opaque
+stringData:
+  CORE_SERVER_DB_USERNAME: '<change-me-db-username>'
+  CORE_SERVER_DB_PASSWORD: '<change-me-db-password>'
+  CORE_SERVER_TOKEN_SIGNING_KEY: '<change-me-token-signing-key>'
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: core-server
+  labels:
+    app: core-server
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: core-server
+  template:
+    metadata:
+      labels:
+        app: core-server
+    spec:
+      containers:
+        - name: core-server
+          image: docker.io/vskurikhin/core:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 8082
+              protocol: TCP
+          envFrom:
+            - configMapRef:
+                name: core-server-config
+            - secretRef:
+                name: core-server-secret
+          resources:
+            requests:
+              cpu: "200m"
+              memory: "512Mi"
+            limits:
+              cpu: "1500m"
+              memory: "1537Mi"
+          readinessProbe:
+            tcpSocket:
+              port: 8082
+            initialDelaySeconds: 10
+            periodSeconds: 5
+          livenessProbe:
+            tcpSocket:
+              port: 8082
+            initialDelaySeconds: 30
+            periodSeconds: 10
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: core-server
+spec:
+  selector:
+    app: core-server
+  ports:
+    - name: http
+      port: 8082
+      targetPort: 8082
+  type: ClusterIP

@@ -1,0 +1,24 @@
+/*
+ * This file was last modified at 2026.03.01 01:11 by Victor N. Skurikhin.
+ * This is free and unencumbered software released into the public domain.
+ * For more information, please refer to <http://unlicense.org>
+ * settings.gradle
+ * $Id$
+ */
+
+pluginManagement {
+    repositories {
+        mavenCentral()
+        gradlePluginPortal()
+        mavenLocal()
+    }
+    plugins {
+        id "${quarkusPluginId}" version "${quarkusPluginVersion}"
+    }
+}
+rootProject.name = 'DayBook3'
+rootProject.buildFileName = 'build.gradle'
+include 'spi-mapstruct'
+include 'lib'
+include 'core'
+include 'api'
