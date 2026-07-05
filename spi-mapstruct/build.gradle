@@ -1,8 +1,0 @@
-apply plugin: 'java'
-
-sourceCompatibility = JavaVersion.VERSION_21
-
-dependencies {
-    implementation "org.mapstruct:mapstruct:$mapstructVersion"
-    implementation "org.mapstruct:mapstruct-processor:$mapstructVersion"
-}
